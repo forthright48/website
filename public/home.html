@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>forthright48</title>
+
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/mycss.css" rel="stylesheet">
+        <script src="js/angular.js"></script>
+        <script src="js/angular-route.js"></script>
+        <script src="js/angularApp.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="mainCtrl as main">
+
+        <div class="container">
+
+            <custom-header></custom-header>
+
+            <div ng-view></div>
+
+        </div>
+
+    </body>
+</html>

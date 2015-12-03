@@ -1,0 +1,15 @@
+{
+  "name": "forthright48",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohammad Samiul Islam (forthright48)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongoose": "^4.2.9"
+  }
+}

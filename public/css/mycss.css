@@ -1,0 +1,26 @@
+body {
+    font-size: 18px;
+}
+
+.page-header {
+    margin-top: 10px;
+}
+.page-header h1 {
+    display: inline-block;
+}
+
+
+.icons {
+    height: 75px;
+    width:  75px;
+}
+
+.displayControl button {
+    font-size: 20px;
+}
+
+.display {
+    margin: 0 auto;
+    max-width: 600px;
+    color: gray;
+}

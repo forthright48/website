@@ -1,0 +1,29 @@
+<div class="jumbotron text-center">
+    <h1>Just A Regular Manga Lover</h1>
+    <h2>Competitive Programming Enthusiast and Novice Developer</h2>
+</div>
+
+<div class="displayControl">
+    <ul class="list-inline text-center">
+        <li><button class="btn btn-primary" ng-click="main.changeState ( 1 )">Blog</button></li>
+        <li><button class="btn btn-primary" ng-click="main.changeState ( 2 )">Problem Setting</button></li>
+    </ul>
+</div>
+
+<div class="display text-center">
+
+    <div ng-show="main.getState()==1">
+        <h2>Blog</h2>
+        <p>Even though I originally planned to write about tons of different stuffs here, somehow I ended up writing about lots of Number Theory. Hopefully, I will write about other things someday.</p>
+
+        <a href="http://www.forthright48.blogspot.com" class="btn btn-default">Take Me There</a>
+    </div>
+
+    <div ng-show="main.getState()==2">
+        <h2>Problem Setting</h2>
+        <p>Occasionally, I set problems for various contests. You will find the problems I created listed here.</p>
+
+        <a href="#" class="btn btn-default">Take Me There</a>
+    </div>
+
+</div>
