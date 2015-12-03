@@ -9,6 +9,7 @@
   "author": "Mohammad Samiul Islam (forthright48)",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "mongoose": "^4.2.9"
   }
