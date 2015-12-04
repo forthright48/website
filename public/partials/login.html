@@ -5,18 +5,18 @@
 
         <div class="form-group">
             <label class="col-sm-offset-2 col-sm-2" for="username"> Username: </label>
-            <div class="col-sm-6"> <input id = "username" class="form-control" type="text"> </div>
+            <div class="col-sm-6"> <input id = "username" class="form-control" type="text" ng-model="log.form.username"> </div>
         </div>
 
         <div class="form-group">
             <label class="col-sm-offset-2 col-sm-2" for="password"> Password: </label>
-            <div class="col-sm-6"> <input id = "password" class="form-control" type="password"> </div>
+            <div class="col-sm-6"> <input id = "password" class="form-control" type="password" ng-model="log.form.password"> </div>
         </div>
 
         <div class="form-group">
             <div class="text-center">
-                <button class="btn btn-primary" type="submit">Login</button>
-                <button class="btn btn-primary" type="password">Register</button>
+                <button class="btn btn-primary" type="submit" ng-click="log.login()" ng-disabled="log.disable">Login</button>
+                <button class="btn btn-primary" type="password" ng-click="log.register()" ng-disabled="log.disable">Register</button>
             </div>
         </div>
 

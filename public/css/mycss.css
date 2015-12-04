@@ -2,17 +2,14 @@ body {
     font-size: 18px;
 }
 
+.v-center {
+  position: relative;
+  transform: translateY(50%);
+}
+
 .page-header {
     margin-top: 10px;
 }
-.page-header h1 {
-    display: inline-block;
-}
-.page-header .breadcrumb {
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
 
 .icons {
     height: 75px;

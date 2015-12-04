@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
 
-///Mongoose Connection Code
+// Mongoose Connection Code
 mongoose.connection.on('open', function (ref) {
   console.log('Connected to mongo server.');
 });
@@ -24,8 +24,9 @@ mongoose.connection.on('error', function (err) {
 });
 mongoose.connect ( "mongodb://localhost:27017/myapp" );
 
-///Mongoose configuration with different tables
-require ( "./models/psetting.js")(app); ///Connect app with RESTful api for psetting
+// Mongoose configuration with different tables
+require ( "./models/psetting.js")(app); // Connect app with RESTful api for psetting
+require ( "./models/user.js")(app); // Connect login and register API
 
 ///Send the angularJS view
 app.get("/", function( req, res ) {
