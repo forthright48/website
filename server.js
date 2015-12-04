@@ -5,6 +5,9 @@ var express = require("express"),
     bodyParser = require ( "body-parser"),
     secret = require("./secret.js"); ///Secret object
 
+///Set constants
+app.set ( "superSecret", secret.secret );
+
 app.use ( express.static ( path.join( __dirname, "public" ) ) );
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies

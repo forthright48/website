@@ -9,7 +9,7 @@ All notable changes are documented here.
 ### Removed
 - Planning.md
 ### Added
-- Added jwt-simple module for node.
+- Added jsonwebtoken module for node.
 
 ## [0.0.0] - 2015-12-04
 ### Added

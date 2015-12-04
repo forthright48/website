@@ -15,6 +15,9 @@
                 templateUrl: "/partials/psetting.html",
                 label: "Problem Setting"
             })
+            .when ( "/login", {
+                templateUrl: "/partials/login.html"
+            })
             .otherwise ( {
                 redirectTo: "/"
             })

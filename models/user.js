@@ -1,5 +1,6 @@
 var mongoose = require ( "mongoose" ),
-    express = require ( "express" );
+    express = require ( "express" ),
+    jwt = require ( "jwt-simple");
 
 var schema = new mongoose.Schema ( {
     username: "string",
@@ -17,7 +18,22 @@ router.post ( "/login", function ( req, res ) {
         if ( !user ) {
             res.json( {success: false, msg: "User not found." } );
         }else {
-            ///Check if password match
+            ///Check if password matches
+            if ( user.password != req.body.password ) {
+                res.json ( {success: false, msg: "Password Doesn't Match"});
+            }
+            else { ///Mathces
+                ///Create a token
+                var token = jwt.encode ( user, app.get("superSecret"), {
+                    expiresIn: "24h"
+                });
+
+                res.json( {
+                    success: true,
+                    msg: "Here is your token",
+                    token: token
+                });
+            }
         }
     });
 });
