@@ -11,6 +11,7 @@
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "jwt-simple": "^0.4.0",
     "mongoose": "^4.2.9"
   }
 }
