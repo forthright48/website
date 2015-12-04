@@ -10,6 +10,8 @@ All notable changes are documented here.
 - Planning.md
 ### Added
 - Added jsonwebtoken module for node.
+- Login API that sends token.
+- Login page at /login.
 
 ## [0.0.0] - 2015-12-04
 ### Added
