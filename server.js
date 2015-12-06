@@ -3,16 +3,17 @@ var express = require("express"),
     path = require ( "path" ),
     mongoose = require ( "mongoose" ),
     bodyParser = require ( "body-parser"),
-    secret = require("./secret.js"); ///Secret object
+    secret = require("./secret.js"), ///Secret object
+    expressjwt = require ( "express-jwt");
 
-///Set constants
+// Set constants
 app.set ( "superSecret", secret.secret );
 
-app.use ( express.static ( path.join( __dirname, "public" ) ) );
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-    extended: true
-}));
+// Set Middlewares
+app.use ( express.static ( path.join( __dirname, "public" ) ) ); // Serve Public Files
+app.use( bodyParser.json() ); // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded( { extended: true} ) ); // to support URL-encoded bodies
+app.use ( "/api/auth", expressjwt({secret: secret.secret}) ); // Check for JWT in /api/auth and decode it in req.user
 
 // Mongoose Connection Code
 mongoose.connection.on('open', function (ref) {
@@ -28,7 +29,7 @@ mongoose.connect ( "mongodb://localhost:27017/myapp" );
 require ( "./models/psetting.js")(app); // Connect app with RESTful api for psetting
 require ( "./models/user.js")(app); // Connect login and register API
 
-///Send the angularJS view
+// Send the angularJS view
 app.get("/", function( req, res ) {
     res.sendFile( path.join( __dirname, "public", "home.html") );
 })
