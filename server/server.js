@@ -10,7 +10,7 @@ var express = require("express"),
 app.set ( "superSecret", secret.secret );
 
 // Set Middlewares
-app.use ( express.static ( path.join( __dirname, "public" ) ) ); // Serve Public Files
+app.use ( express.static ( path.join( __dirname, "../public" ) ) ); // Serve Public Files
 app.use( bodyParser.json() ); // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded( { extended: true} ) ); // to support URL-encoded bodies
 app.use ( "/api/auth", expressjwt({secret: secret.secret}) ); // Check for JWT in /api/auth and decode it in req.user
@@ -31,7 +31,7 @@ require ( "./models/user.js")(app); // Connect login and register API
 
 // Send the angularJS view
 app.get("/", function( req, res ) {
-    res.sendFile( path.join( __dirname, "public", "home.html") );
+    res.sendFile( path.join( __dirname, "../public", "home.html") );
 })
 
 app.listen(48, function() {
