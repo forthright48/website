@@ -1,0 +1,13 @@
+{
+  "name": "forthright48",
+  "authors": [
+    "Mohammad Samiul Islam (forthright48)"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
