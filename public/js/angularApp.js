@@ -42,7 +42,7 @@
         var vm = this;
         vm.breadcrumbs = breadcrumbs;
     })
-    .controller ( "psettingCtrl", function ( ProblemList ){
+    .controller ( "psettingCtrl", function ( ProblemList, AuthService ){
         var vm = this;
         vm.problems = [];
 
@@ -57,6 +57,7 @@
 
 
         vm.insertProblem = function () {
+            console.log ( AuthService.getToken() );
             vm.disable = 1;
             ProblemList.insertProblemAsync ( vm.form )
             .then ( function ( response) {

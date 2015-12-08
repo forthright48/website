@@ -8,6 +8,11 @@ All notable changes are documented here.
 - Use Grunt to insert scripts and CSS
 - One component per file
 
+## [0.0.3] - 2015-12-08
+## Added
+- Bower and Grunt for easier maintenance.
+- grunt-wiredep to include scripts and css.
+
 ## [0.0.2] - 2015-12-06
 ### Added
 - Create service to handle storage of jwt in angular
