@@ -12,6 +12,8 @@ All notable changes are documented here.
 ## Added
 - Bower and Grunt for easier maintenance.
 - grunt-wiredep to include scripts and css.
+- Moved server related files into folder server
+- Added grunt-injector to inject css and js files to home.html
 
 ## [0.0.2] - 2015-12-06
 ### Added
