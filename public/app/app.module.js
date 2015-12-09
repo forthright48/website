@@ -26,22 +26,7 @@
             redirectTo: "/"
         });
     });
-
-    app
-    .controller ( "headerCtrl", function ( $scope, breadcrumbs){
-        var vm = this;
-        vm.breadcrumbs = breadcrumbs;
-    });
     
-    app.directive ( "customHeader", function() {
-        return {
-            restrict: "E",
-            templateUrl: "/partials/customHeader.html",
-            controller: "headerCtrl",
-            controllerAs: "head"
-        };
-    });
-
     app
     .factory ( "ProblemList", function( $http ) {
 
