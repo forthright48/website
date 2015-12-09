@@ -1,24 +1,26 @@
 (function(){
     angular.module ( "app" ).controller ( "login.controller", function( $http, AuthService ){
         var vm = this;
+
         vm.form = {};
         vm.disable = 0;
+        vm.register = register;
+        vm.login = login;
 
-        vm.register = function() {
+        /******************** Implementation ************************/
+
+        function register () {
             vm.disable = 1;
-            $http.post ( "/api/register", vm.form )
-            .then ( function(data){
+            AuthService.registerAsync ( vm.form ).then ( function(data){
                 vm.disable = 0;
                 vm.form = {};
-                console.log ( "Register Successful" );
             }, function(data){
                 vm.disable = 0;
                 vm.form = {};
-                console.log ( "Register Fail" );
             });
         }
 
-        vm.login = function() {
+        function login () {
             vm.disable = 1;
             AuthService.loginAsync ( vm.form ).then ( function(response){
                 vm.disable = 0;
@@ -26,7 +28,6 @@
             }, function(data){
                 vm.disable = 0;
                 vm.form = {};
-                console.log ( "Login Fail" );
             });
         }
     });

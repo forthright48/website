@@ -2,13 +2,39 @@
     angular.module("app").factory ( "AuthService", function ( $window, $q, $http ) {
         var loggedIn = false;
 
-        var auth = {};
+        var auth = {
+            isLoggedIn: isLoggedIn,
+            loginAsync: loginAsync,
+            registerAsync: registerAsync,
+            saveToken: saveToken,
+            getToke: getToken,
+            logOut: logOut
+        };
 
-        auth.isLoggedIn = function() {
+        return auth;
+
+        /******************** Implementation ************************/
+
+        function isLoggedIn () {
             return loggedIn;
+        };
+
+        function registerAsync ( form ) {
+            var defer = $q.defer();
+
+            $http.post ( "/api/register", form ).then( function( response ){
+                defer.resolve ( {success: true} );
+                console.log ( "Register Successful" );
+            }, function( response ){
+                defer.resolve ( {success: false} );
+                console.log ( response.data.msg );
+                console.log ( "Register Fail" );
+            });
+
+            return defer.promise;
         }
 
-        auth.loginAsync = function ( form ) {
+        function loginAsync ( form ) {
             var defer = $q.defer();
             $http.post ( "/api/login", form ).then( function( response ){
                 if ( response.data.success ) {
@@ -18,30 +44,30 @@
                     console.log ( "Logged In" );
                 }
                 else {
-                    console.log ( response.data.msg );
                     defer.reject ( { sucess:false } );
+                    console.log ( response.data.msg );
                 }
             }, function(response){
-                console.log ( "Something wrong with http POST" );
                 defer.reject ( { sucess:false } );
+                console.log ( "Something wrong with http POST" );
             });
 
             return defer.promise;
-        }
+        };
 
-        auth.saveToken = function ( token ) {
+        function saveToken ( token ) {
             $window.localStorage['jwtToken'] = token;
-        }
+        };
 
-        auth.getToken = function () {
+        function getToken () {
             return $window.localStorage['jwtToken'];
-        }
+        };
 
-        auth.logOut = function ( token ) {
+        function logOut ( token ) {
+            loggedIn = false;
             $window.localStorage['jwtToken'] = "";
-        }
+        };
 
-        return auth;
     });
 
 })();
