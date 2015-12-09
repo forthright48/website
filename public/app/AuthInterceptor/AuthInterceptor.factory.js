@@ -1,11 +1,11 @@
 (function(){
-    angular.module("app").factory('authInterceptor', function ( $window, AuthService ) {
+    angular.module("app").factory('AuthInterceptor', function ( $window, $q ) {
         return {
             request: function (config) {
 
                 config.headers = config.headers || {};
-                if (AuthService.getToken) {
-                    config.headers.Authorization = "Bearer " + AuthService.getToken();
+                if ($window.localStorage['jwtToken']) {
+                    config.headers.Authorization = "Bearer " + $window.localStorage['jwtToken'];
                 }
                 return config;
             },
@@ -16,9 +16,10 @@
                 return response || $q.when(response);
             }
         };
-    })
-    .config(function ($httpProvider) {
-        $httpProvider.interceptors.push('authInterceptor');
+    });
+
+    angular.module("app").config(function ($httpProvider) {
+        $httpProvider.interceptors.push('AuthInterceptor');
     });
 
 })();

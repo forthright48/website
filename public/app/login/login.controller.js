@@ -20,16 +20,9 @@
 
         vm.login = function() {
             vm.disable = 1;
-            $http.post ( "/api/login", vm.form )
-            .then ( function(response){
+            AuthService.loginAsync ( vm.form ).then ( function(response){
                 vm.disable = 0;
                 vm.form = {};
-
-                if ( response.data.success ) {
-                    AuthService.saveToken ( response.data.token );
-                }
-                else console.log ( response.data.msg );
-
             }, function(data){
                 vm.disable = 0;
                 vm.form = {};

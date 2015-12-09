@@ -19,7 +19,7 @@ module.exports = function(grunt) {
             options: {
                 ignorePath: '<%= mygen.client %>/'
             },
-            scripts: {
+            dependencies: {
                 options: {
                     sort :function(a, b) {
                         var module = /\.module\.js$/; // Regex .module.js as suffix

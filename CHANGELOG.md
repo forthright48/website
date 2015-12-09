@@ -5,13 +5,15 @@ All notable changes are documented here.
 - Edit mode in "Problem Setting" Page.
 - Server side and front side form validation.
 - logOut
-- One component per file
-- Load angular module scripts first by passing sort function.
 - Show login success or failure notification
 
 ## [0.0.4] - 2015-12-09
 ### Refactor
 - Make one component per file
+### Added
+- added sort function to grunt-injector
+### Fixed
+- jsonwebtoken didn't expire (jwt sign must be passed object as first parameter)
 
 ## [0.0.3] - 2015-12-08
 ### Added
