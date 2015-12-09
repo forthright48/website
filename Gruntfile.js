@@ -19,14 +19,16 @@ module.exports = function(grunt) {
             options: {
                 ignorePath: '<%= mygen.client %>/'
             },
-            sort :function(a, b) {
-                var module = /\.module\.js$/; // Regex .model.js as suffix
-                var aMod = module.test(a);
-                var bMod = module.test(b);
-                // inject *.module.js first
-                return (aMod === bMod) ? 0 : (aMod ? -1 : 1);
-            },
-            dependencies: {
+            scripts: {
+                options: {
+                    sort :function(a, b) {
+                        var module = /\.module\.js$/; // Regex .module.js as suffix
+                        var aMod = module.test(a);
+                        var bMod = module.test(b);
+                        // inject *.module.js first
+                        return (aMod === bMod) ? 0 : (aMod ? -1 : 1);
+                    }
+                },
                 files: {
                     '<%= mygen.client %>/index.html': [
                         '<%= mygen.client %>/**/*.js',

@@ -26,41 +26,6 @@
             redirectTo: "/"
         });
     });
-    
-    app
-    .factory ( "ProblemList", function( $http ) {
-
-        var service = {
-            getProblemsAsync: function() {
-                return $http.get ( "/api/psetting");
-            },
-            insertProblemAsync: function( form ) {
-                return $http.post ( "/api/auth/psetting", form );
-            },
-            deleteProblemAsync : function ( id ) {
-                return $http.delete ( "/api/auth/psetting/" + id );
-            }
-        }
-
-        return service;
-    })
-    .factory ( "AuthService", function ( $window ){
-        var auth = {};
-
-        auth.saveToken = function ( token ) {
-            $window.localStorage['jwtToken'] = token;
-        }
-
-        auth.getToken = function () {
-            return $window.localStorage['jwtToken'];
-        }
-
-        auth.logOut = function ( token ) {
-            $window.localStorage['jwtToken'] = "";
-        }
-
-        return auth;
-    });
 
     app.factory('authInterceptor', function ( $window, AuthService ) {
         return {
