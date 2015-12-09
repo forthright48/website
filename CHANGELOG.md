@@ -5,11 +5,15 @@ All notable changes are documented here.
 - Edit mode in "Problem Setting" Page.
 - Server side and front side form validation.
 - logOut
-- Use Grunt to insert scripts and CSS
 - One component per file
+- Load angular module scripts first by passing sort function.
+
+## [0.0.4] - 2015-12-09
+### Refactor
+- Make one component per file
 
 ## [0.0.3] - 2015-12-08
-## Added
+### Added
 - Bower and Grunt for easier maintenance.
 - grunt-wiredep to include scripts and css.
 - Moved server related files into folder server

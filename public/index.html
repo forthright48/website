@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app" >
     <head>
         <meta charset="utf-8">
         <title>forthright48</title>
@@ -13,7 +13,7 @@
         <!-- endinjector -->
 
     </head>
-    <body ng-app="app" ng-controller="mainCtrl as main">
+    <body>
 
         <div class="container">
 
@@ -32,7 +32,9 @@
         <!-- endbower -->
 
         <!-- injector:js -->
-        <script src="/scripts/angularApp.js"></script>
+        <script src="/app/app.module.js"></script>
+        <script src="/app/main/main.controller.js"></script>
+        <script src="/app/psetting/psetting.controller.js"></script>
         <!-- endinjector -->
 
     </body>

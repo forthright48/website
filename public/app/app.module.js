@@ -5,15 +5,15 @@
     .config ( function ( $routeProvider, $httpProvider) {
         $routeProvider
         .when( "/", {
-            controller: "mainCtrl",
+            controller: "main.controller",
             controllerAs: "main",
-            templateUrl: "/partials/frontPage.html",
+            templateUrl: "app/main/main.html",
             label: "Home"
         })
         .when ( "/psetting", {
-            controller: "psettingCtrl",
+            controller: "psetting.controller",
             controllerAs: "pset",
-            templateUrl: "/partials/psetting.html",
+            templateUrl: "/app/psetting/psetting.html",
             label: "Problem Setting"
         })
         .when ( "/login", {
@@ -28,57 +28,9 @@
     });
 
     app
-    .controller ( "mainCtrl", function() {
-        var state = 0;
-        var vm = this;
-        vm.changeState = function ( x ) {
-            state = x;
-        }
-        vm.getState = function(x) {
-            return state;
-        }
-    })
     .controller ( "headerCtrl", function ( $scope, breadcrumbs){
         var vm = this;
         vm.breadcrumbs = breadcrumbs;
-    })
-    .controller ( "psettingCtrl", function ( ProblemList, AuthService ){
-        var vm = this;
-        vm.problems = [];
-
-        vm.disable = 0;
-
-        ProblemList.getProblemsAsync()
-        .then ( function( response) {
-            vm.problems = response.data;
-        }, function ( response ) {
-            console.log ( response );
-        });
-
-
-        vm.insertProblem = function () {
-            console.log ( AuthService.getToken() );
-            vm.disable = 1;
-            ProblemList.insertProblemAsync ( vm.form )
-            .then ( function ( response) {
-                vm.form = {};
-                vm.disable = 0;
-                vm.problems.push ( response.data );
-            }, function ( response ) {
-                vm.form = {};
-                vm.disable = 0;
-                console.log ( response );
-            });
-        }
-
-        vm.deleteProblem = function ( id, index ) {
-            if ( confirm ( "Are you sure?" ) == false ) return;
-
-            ProblemList.deleteProblemAsync ( id )
-            .then ( function ( response ) {
-                vm.problems.splice ( index, 1 );
-            }, function ( response ) { console.log ( response ); } );
-        }
     })
     .controller ( "loginCtrl", function( $http, AuthService ){
         var vm = this;
