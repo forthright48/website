@@ -17,6 +17,9 @@ router.get( "/psetting", function ( req, res ) { ///Asking for list of Problems
     });
 }).post ( "/auth/psetting", function ( req, res ) { ///Adding a new problem
 
+    //Check if jwt logged in
+    console.log ( req.user );
+
     if ( !req.body ) return res.status ( 500 ).send ( {error: "Something happened while posting in Psettings"});
     Psetting.create ( { index: req.body.index, name: req.body.name, usedIn: req.body.usedIn }, function ( err, data ) {
         if ( err ) res.status ( 500 ).send ( {error: "Something happened while creating in Psettings"});

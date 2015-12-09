@@ -29,8 +29,12 @@ router.post ( "/login", function ( req, res ) {
                 if ( match == false ) return res.json ( {success: false, msg: "Password Doesn't Match"});
                 else { ///Matches
                     ///Create a token
-                    var token = jwt.sign ( user, secret, {
-                        expiresIn: "24h"
+
+                    var userInfo = {
+                        username: user.username
+                    }
+                    var token = jwt.sign ( userInfo, secret, {
+                        expiresIn: "1h"
                     });
 
                     return res.json( { success: true, msg: "Here is your token", token: token });

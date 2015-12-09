@@ -7,6 +7,7 @@ All notable changes are documented here.
 - logOut
 - One component per file
 - Load angular module scripts first by passing sort function.
+- Show login success or failure notification
 
 ## [0.0.4] - 2015-12-09
 ### Refactor
