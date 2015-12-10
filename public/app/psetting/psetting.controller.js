@@ -13,11 +13,14 @@
         ////////////////////////
 
         function activate() {
-            ProblemList.getProblemsAsync().then ( function( response) {
-                vm.problems = response.data;
-            }, function ( response ) {
-                console.log ( response );
-            });
+
+            if ( vm.problems.length == 0 ) { // Populate when array is empty
+                ProblemList.getProblemsAsync().then ( function( response) {
+                    vm.problems = response.data;
+                }, function ( response ) {
+                    console.log ( response );
+                });
+            }
         }
 
         function insertProblem () {
