@@ -1,25 +1,25 @@
 {
-  "name": "forthright48",
-  "version": "0.0.0",
-  "description": "",
-  "main": "./server/server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Mohammad Samiul Islam (forthright48)",
-  "license": "MIT",
-  "dependencies": {
-    "bcryptjs": "^2.3.0",
-    "body-parser": "^1.14.1",
-    "express": "^4.13.3",
-    "express-jwt": "^3.3.0",
-    "jsonwebtoken": "^5.4.1",
-    "mongoose": "^4.2.9"
-  },
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-injector": "^0.6.1",
-    "grunt-wiredep": "^2.0.0"
-  }
+    "name": "forthright48",
+    "version": "0.0.0",
+    "description": "",
+    "main": "server/server.js",
+    "scripts": {
+        "start": "node server/server.js"
+    },
+    "author": "Mohammad Samiul Islam (forthright48)",
+    "license": "MIT",
+    "dependencies": {
+        "bcryptjs": "^2.3.0",
+        "body-parser": "^1.14.1",
+        "express": "^4.13.3",
+        "express-jwt": "^3.3.0",
+        "jsonwebtoken": "^5.4.1",
+        "mongoose": "^4.2.9"
+    },
+    "devDependencies": {
+        "grunt": "^0.4.5",
+        "grunt-contrib-watch": "^0.6.1",
+        "grunt-injector": "^0.6.1",
+        "grunt-wiredep": "^2.0.0"
+    }
 }

@@ -2,7 +2,7 @@ var mongoose = require ( "mongoose" ),
     express = require ( "express" ),
     jwt = require ( "jsonwebtoken"),
     bcrypt = require ( "bcryptjs" ),
-    secret = require("./../secret.js").secret;
+    secret = process.env.OPENSHIFT_SECRET_TOKEN || require("./secret.js").secret;
 
 var schema = new mongoose.Schema ( {
     username: "string",
@@ -34,7 +34,7 @@ router.post ( "/login", function ( req, res ) {
                         username: user.username
                     }
                     var token = jwt.sign ( userInfo, secret, {
-                        expiresIn: "5m"
+                        expiresIn: "1h"
                     });
 
                     return res.json( { success: true, msg: "Here is your token", token: token });
@@ -45,9 +45,14 @@ router.post ( "/login", function ( req, res ) {
 });
 
 router.post ( "/register", function ( req, res ) {
+
+    // No more registration allowed
+    return res.status(500).json ( {success: false} );
+
     bcrypt.genSalt(12, function(err, salt) { // Create a random salt
         if ( err ) return res.status(500).send( "Salt creation failed" );
         bcrypt.hash(req.body.password, salt, function(err, hash) {
+            if ( err ) return res.status(500).send ( "Password Hashing Error" );
             // Store hash in your password DB.
             User.create ( { username: req.body.username, password: hash }, function ( err, data ) {
                 if ( err ) return res.status(500).send ( "User Creation Error" );
