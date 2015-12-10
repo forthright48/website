@@ -7,13 +7,19 @@ All notable changes are documented here.
 - logOut
 - Show login success or failure notification
 
+## [0.0.5] - 2015-12-10
+### Added
+
+
 ## [0.0.4] - 2015-12-09
 ### Refactor
 - Make one component per file
+- Used function declaration approach on AuthService and LoginCtrl.
 ### Added
 - added sort function to grunt-injector
 ### Fixed
 - jsonwebtoken didn't expire (jwt sign must be passed object as first parameter)
+- circular dependency fix - AuthInterceptor doesn't depend of AuthService
 
 ## [0.0.3] - 2015-12-08
 ### Added

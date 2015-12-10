@@ -15,7 +15,8 @@
 
         <div class="col-md-1 v-center">
             <ul class="list-inline v-center">
-                <a href="#/login"><li>Login</li></a>
+                <a href="#/login" ng-if="head.isLoggedIn() == false"><li>LogIn</li></a>
+                <a href="" ng-if="head.isLoggedIn() == true" ng-click="head.logOut()"><li>LogOut</li></a>
             </ul>
         </div>
 

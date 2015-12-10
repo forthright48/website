@@ -3,7 +3,7 @@
         var vm = this;
 
         vm.form = {};
-        vm.disable = 0;
+        vm.disable = 0; // Disable when waiting for response from server
         vm.register = register;
         vm.login = login;
 

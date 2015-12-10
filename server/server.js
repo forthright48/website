@@ -32,7 +32,7 @@ require ( "./models/user.js")(app); // Connect login and register API
 // Send the angularJS view
 app.get("/", function( req, res ) {
     res.sendFile( path.join( __dirname, "../public", "index.html") );
-})
+});
 
 app.listen(48, function() {
     console.log("Listening on port 48");

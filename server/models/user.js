@@ -34,7 +34,7 @@ router.post ( "/login", function ( req, res ) {
                         username: user.username
                     }
                     var token = jwt.sign ( userInfo, secret, {
-                        expiresIn: "1h"
+                        expiresIn: "5m"
                     });
 
                     return res.json( { success: true, msg: "Here is your token", token: token });
@@ -55,6 +55,10 @@ router.post ( "/register", function ( req, res ) {
             })
         });
     });
+});
+
+router.get ( "/auth/tokenVerify", function ( req, res ) {
+    res.status(200).json ( {success:true} );
 });
 
 module.exports = function ( app ) {

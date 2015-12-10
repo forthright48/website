@@ -16,15 +16,14 @@
         vm.insertProblem = function () {
             console.log ( AuthService.getToken() );
             vm.disable = 1;
-            ProblemList.insertProblemAsync ( vm.form )
-            .then ( function ( response) {
+            ProblemList.insertProblemAsync ( vm.form ).then ( function ( response) {
                 vm.form = {};
                 vm.disable = 0;
                 vm.problems.push ( response.data );
             }, function ( response ) {
                 vm.form = {};
                 vm.disable = 0;
-                console.log ( response );
+                console.log ( response.data );
             });
         }
 

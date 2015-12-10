@@ -1,14 +1,14 @@
 (function(){
     angular.module("app").factory ( "AuthService", function ( $window, $q, $http ) {
-        var loggedIn = false;
+        var loggedIn;
 
         var auth = {
-            isLoggedIn: isLoggedIn,
-            loginAsync: loginAsync,
-            registerAsync: registerAsync,
-            saveToken: saveToken,
-            getToke: getToken,
-            logOut: logOut
+            isLoggedIn: isLoggedIn,         //()
+            loginAsync: loginAsync,         //(form)
+            registerAsync: registerAsync,   //(form)
+            saveToken: saveToken,           //(token)
+            getToken: getToken,             //()
+            logOut: logOut                  //()
         };
 
         return auth;
@@ -16,6 +16,14 @@
         /******************** Implementation ************************/
 
         function isLoggedIn () {
+            if ( angular.isUndefined(loggedIn) ) {
+                loggedIn = false;
+                $http.get ( "/api/auth/tokenVerify").then( function( response ){
+                    loggedIn = true;
+                }, function( response ){
+                    loggedIn = false;
+                });
+            }
             return loggedIn;
         };
 
