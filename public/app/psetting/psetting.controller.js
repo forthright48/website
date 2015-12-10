@@ -2,7 +2,7 @@
     angular.module ( "app" ) .controller ( "psetting.controller", function ( ProblemList, AuthService ){
         var vm = this;
         vm.problems = [];
-        vm.disable = 0;
+        vm.disable = 0;                         //Disable buttons when editing
 
         vm.insertProblem = insertProblem;       //()
         vm.deleteProblem = deleteProblem;       //( id, index )
