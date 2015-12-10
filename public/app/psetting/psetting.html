@@ -4,18 +4,19 @@
     <table class="table table-hover">
         <thead>
             <th>#</th><th>Name</th><th>Used In</th>
+            <th ng-if="pset.isLoggedIn()">Admin</th>
         </thead>
         <tbody>
             <tr ng-repeat="problem in pset.problems | orderBy:'index'" >
                 <td>{{problem.index}}</td><td>{{problem.name}}</td><td>{{problem.usedIn}}</td>
 
-                <td>
+                <td ng-if="pset.isLoggedIn()">
                     <button class="btn btn-primary">Edit</button>
                     <button class="btn btn-danger" ng-click="pset.deleteProblem(problem._id, $index )">Delete</button>
                 </td>
             </tr>
 
-            <tr>
+            <tr ng-if="pset.isLoggedIn()">
                 <td><input type="number" ng-model="pset.form.index"></td>
                 <td><input type="text" ng-model="pset.form.name"></td>
                 <td><input type="text" ng-model="pset.form.usedIn"></td>

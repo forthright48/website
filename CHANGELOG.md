@@ -9,7 +9,9 @@ All notable changes are documented here.
 
 ## [0.0.5] - 2015-12-10
 ### Added
-
+- New api to verify token /api/auth/verifyToken
+- Verify loggedIn state at the beginning from API
+- Added LogOut button and Logic
 
 ## [0.0.4] - 2015-12-09
 ### Refactor

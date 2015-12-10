@@ -2,18 +2,25 @@
     angular.module ( "app" ) .controller ( "psetting.controller", function ( ProblemList, AuthService ){
         var vm = this;
         vm.problems = [];
-
         vm.disable = 0;
 
-        ProblemList.getProblemsAsync()
-        .then ( function( response) {
-            vm.problems = response.data;
-        }, function ( response ) {
-            console.log ( response );
-        });
+        vm.insertProblem = insertProblem;       //()
+        vm.deleteProblem = deleteProblem;       //( id, index )
+        vm.isLoggedIn = isLoggedIn;             //()
 
+        activate();
 
-        vm.insertProblem = function () {
+        ////////////////////////
+
+        function activate() {
+            ProblemList.getProblemsAsync().then ( function( response) {
+                vm.problems = response.data;
+            }, function ( response ) {
+                console.log ( response );
+            });
+        }
+
+        function insertProblem () {
             console.log ( AuthService.getToken() );
             vm.disable = 1;
             ProblemList.insertProblemAsync ( vm.form ).then ( function ( response) {
@@ -25,15 +32,20 @@
                 vm.disable = 0;
                 console.log ( response.data );
             });
-        }
+        };
 
-        vm.deleteProblem = function ( id, index ) {
+        function deleteProblem ( id, index ) {
             if ( confirm ( "Are you sure?" ) == false ) return;
 
             ProblemList.deleteProblemAsync ( id )
             .then ( function ( response ) {
                 vm.problems.splice ( index, 1 );
             }, function ( response ) { console.log ( response ); } );
+        };
+
+        function isLoggedIn() {
+            return AuthService.isLoggedIn();
         }
+
     });
 })();
