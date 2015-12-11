@@ -6,6 +6,7 @@ All notable changes are documented here.
 - Server side and front side form validation.
 - logOut
 - Show login success or failure notification
+- Problem List is retrieved every time route changes. Use service to fix it.
 
 ## [0.0.5] - 2015-12-10
 ### Added

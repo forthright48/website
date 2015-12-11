@@ -21,6 +21,7 @@
         function activate() {
 
             if ( vm.problems.length == 0 ) { // Populate when array is empty
+                console.log ( "Populating Problems" );
                 ProblemList.getProblemsAsync().then ( function( response) {
                     vm.problems = response.data;
                 }, function ( response ) {

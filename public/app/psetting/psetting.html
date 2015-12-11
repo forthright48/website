@@ -4,6 +4,7 @@
     <table class="table table-hover">
         <thead>
             <th>#</th><th>Name</th><th>Used In</th>
+            
             <th ng-if="pset.isLoggedIn()">Admin</th>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@
                 </td>
             </tr>
 
+            <!-- New Row with Inputs for Adding Problems -->
             <tr ng-if="pset.isLoggedIn()">
                 <td><input type="number" ng-model="pset.form.index"></td>
                 <td><input type="text" ng-model="pset.form.name"></td>
