@@ -3,9 +3,15 @@
         var vm = this;
         vm.problems = [];
         vm.disable = 0;                         //Disable buttons when editing
+        vm.edit = {                             //Edit mode
+            mode: 0,
+            id: ""
+        };
 
         vm.insertProblem = insertProblem;       //()
         vm.deleteProblem = deleteProblem;       //( id, index )
+        vm.startEdit = startEdit;               //( id )
+        vm.doneEdit = doneEdit;                 //()
         vm.isLoggedIn = isLoggedIn;             //()
 
         activate();
@@ -35,7 +41,7 @@
                 vm.disable = 0;
                 console.log ( response.data );
             });
-        };
+        }
 
         function deleteProblem ( id, index ) {
             if ( confirm ( "Are you sure?" ) == false ) return;
@@ -44,7 +50,17 @@
             .then ( function ( response ) {
                 vm.problems.splice ( index, 1 );
             }, function ( response ) { console.log ( response ); } );
-        };
+        }
+
+        function startEdit ( id ) {
+            vm.edit.mode = 1;
+            vm.edit.id = id;
+        }
+
+        function doneEdit () {
+            vm.edit.mode = 0;
+            vm.edit.id = "";
+        }
 
         function isLoggedIn() {
             return AuthService.isLoggedIn();
