@@ -4,11 +4,11 @@
     <table class="table table-hover">
         <thead>
             <th>#</th><th>Name</th><th>Used In</th>
-            
+
             <th ng-if="pset.isLoggedIn()">Admin</th>
         </thead>
         <tbody>
-            <tr ng-repeat="problem in pset.problems | orderBy:'index'" >
+            <tr ng-repeat="problem in pset.problems | orderBy:'index' | freezeOnEdit:pset.edit.mode" >
 
                 <!-- When not editing, display normal data -->
                 <td ng-if="problem._id !== pset.edit.id" >{{problem.index}}</td>
