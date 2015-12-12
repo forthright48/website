@@ -4,7 +4,8 @@ var mongoose = require ( "mongoose" ),
 var schema = new mongoose.Schema({
     index: 'number',
     name: 'string',
-    usedIn: 'string'
+    usedIn: 'string',
+    link: "string"
 });
 
 var Psetting = mongoose.model("Psetting", schema );
@@ -32,9 +33,12 @@ function getAllProblems ( req, res ) {
 function addProblem ( req, res ) {
     if ( !req.body ) return res.status ( 500 ).send ( {error: "Something happened while posting in Psettings"});
     Psetting.create ( {
+
         index: req.body.index,
         name: req.body.name,
-        usedIn: req.body.usedIn
+        usedIn: req.body.usedIn,
+        link: req.body.link
+
     }, function ( err, data ) {
         if ( err ) res.status ( 500 ).send ( {error: "Something happened while creating in Psettings"});
         else res.json ( data );
@@ -56,6 +60,7 @@ function editProblem ( req, res ) {
             data.index = req.body.index;
             data.name = req.body.name;
             data.usedIn = req.body.usedIn;
+            data.link = req.body.link;
 
             data.save(function (err){
                 if ( err ) return res.status ( 500 ).send ( {error: "Server Side Saving Error"} );

@@ -3,17 +3,21 @@
 
     <table class="table table-hover">
         <thead>
-            <th>#</th><th>Name</th><th>Used In</th>
+            <th>#</th><th>Name</th><th>Used In</th><th ng-if="pset.edit.mode===1">Link</th>
 
             <th ng-if="pset.isLoggedIn()">Admin</th>
         </thead>
         <tbody>
-            <tr ng-repeat="problem in pset.problems | orderBy:'index' | freezeOnEdit:pset.edit.mode" >
+            <tr ng-repeat="problem in pset.problems | orderBy:'index':-1 | freezeOnEdit:pset.edit.mode" >
 
                 <!-- When not editing, display normal data -->
                 <td ng-if="problem._id !== pset.edit.id" >{{problem.index}}</td>
                 <td ng-if="problem._id !== pset.edit.id" >{{problem.name}}</td>
-                <td ng-if="problem._id !== pset.edit.id" >{{problem.usedIn}}</td>
+                <td ng-if="problem._id !== pset.edit.id" >
+                    <!-- Assign Link to Problem, if present -->
+                    <a ng-if="problem.link" href="{{problem.link}}">{{problem.usedIn}}</a>
+                    <span ng-if="!problem.link">{{problem.usedIn}}</span>
+                </td>
 
 
                 <!-- During Editing Display Form for Edit -->
@@ -26,6 +30,9 @@
                 <td ng-if="problem._id === pset.edit.id" >
                     <input type="text" ng-model="problem.usedIn">
                 </td>
+                <td ng-if="problem._id === pset.edit.id" >
+                    <input type="text" ng-model="problem.link">
+                </td>
 
                 <!-- Admin Control -->
                 <td ng-if="pset.isLoggedIn()">
@@ -37,7 +44,7 @@
             </tr>
 
             <!-- New Row with Inputs for Adding Problems -->
-            <tr ng-if="pset.isLoggedIn()">
+            <tr ng-if="pset.edit.mode === 0 && pset.isLoggedIn()">
                 <td><input type="number" ng-model="pset.form.index"></td>
                 <td><input type="text" ng-model="pset.form.name"></td>
                 <td><input type="text" ng-model="pset.form.usedIn"></td>

@@ -12,6 +12,8 @@ All notable changes are documented here.
 ### Added
 - Row edit form in Psetting table.
 - freezeOnEdit filter.
+- Support for Editing Problem in Psetting.
+- Links to Problems in Psetting.
 
 ## [0.0.5] - 2015-12-10
 ### Added
