@@ -6,19 +6,25 @@
             controller: "main.controller",
             controllerAs: "main",
             templateUrl: "/app/main/main.html",
-            label: "Home"
+            label: "home"
         })
         .when ( "/psetting", {
             controller: "psetting.controller",
             controllerAs: "pset",
             templateUrl: "/app/psetting/psetting.html",
-            label: "Problem Setting"
+            label: "pset"
         })
         .when ( "/login", {
             templateUrl: "/app/login/login.html",
             controller: "login.controller",
             controllerAs: "login",
-            label: "Login"
+            label: "login"
+        })
+        .when ( "/learnDev", {
+            templateUrl: "app/learnDev/learnDev.html",
+            controller: "learnDev.controller",
+            controllerAs: "learn",
+            label: "learn"
         })
         .otherwise ( {
             redirectTo: "/"

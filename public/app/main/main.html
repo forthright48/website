@@ -7,6 +7,7 @@
     <ul class="list-inline text-center">
         <li><button class="btn btn-primary" ng-click="main.changeState ( 1 )">Blog</button></li>
         <li><button class="btn btn-primary" ng-click="main.changeState ( 2 )">Problem Setting</button></li>
+        <li><button class="btn btn-primary" ng-click="main.changeState ( 3 )">Learn Dev</button></li>
     </ul>
 </div>
 
@@ -24,6 +25,13 @@
         <p>Occasionally, I set problems for various contests. You will find the problems I created listed here.</p>
 
         <a href="#/psetting" class="btn btn-default">Take Me There</a>
+    </div>
+
+    <div ng-show="main.getState()==3">
+        <h2>Learning Development</h2>
+        <p>A curated list of resources that helped me learn the ropes.</p>
+
+        <a href="#/learnDev" class="btn btn-default">Take Me There</a>
     </div>
 
 </div>

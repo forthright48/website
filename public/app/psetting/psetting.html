@@ -8,6 +8,14 @@
             <th ng-if="pset.isLoggedIn()">Admin</th>
         </thead>
         <tbody>
+            <!-- New Row with Inputs for Adding Problems -->
+            <tr ng-if="pset.edit.mode === 0 && pset.isLoggedIn()">
+                <td><input type="number" ng-model="pset.form.index"></td>
+                <td><input type="text" ng-model="pset.form.name"></td>
+                <td><input type="text" ng-model="pset.form.usedIn" placeholder="Used In"><input type="text" ng-model="pset.form.link" placeholder="Link"></td>
+                <td><input type="submit" ng-click="pset.insertProblem()" ng-disabled="pset.disable" value="Submit"></td>
+            </tr>
+
             <tr ng-repeat="problem in pset.problems | orderBy:'index':-1 | freezeOnEdit:pset.edit.mode" >
 
                 <!-- When not editing, display normal data -->
@@ -41,14 +49,6 @@
 
                     <button ng-if="pset.edit.mode === 0" class="btn btn-danger" ng-click="pset.deleteProblem(problem._id, $index )">Delete</button>
                 </td>
-            </tr>
-
-            <!-- New Row with Inputs for Adding Problems -->
-            <tr ng-if="pset.edit.mode === 0 && pset.isLoggedIn()">
-                <td><input type="number" ng-model="pset.form.index"></td>
-                <td><input type="text" ng-model="pset.form.name"></td>
-                <td><input type="text" ng-model="pset.form.usedIn"></td>
-                <td><input type="submit" ng-click="pset.insertProblem()" ng-disabled="pset.disable" value="Submit"></td>
             </tr>
 
         </tbody>
