@@ -1,5 +1,5 @@
 (function(){
-    var app = angular.module ( "app", ["ngRoute", "ng-breadcrumbs", "ng-showdown"] );
+    var app = angular.module ( "app", ["ngRoute", "ng-breadcrumbs", "hc.marked"] );
 
     app.config ( function ( $routeProvider, $httpProvider) {
         $routeProvider.when( "/", {
