@@ -30,7 +30,7 @@
                 <!-- Admin Control -->
                 <td ng-if="pset.isLoggedIn()">
                     <button ng-if="pset.edit.mode === 0" class="btn btn-primary" ng-click="pset.startEdit( problem._id )">Edit</button>
-                    <button ng-if="pset.edit.mode === 1 && pset.edit.id === problem._id" class="btn btn-primary" ng-click="pset.doneEdit()">Done</button>
+                    <button ng-if="pset.edit.mode === 1 && pset.edit.id === problem._id" class="btn btn-primary" ng-click="pset.doneEdit( problem )">Done</button>
 
                     <button ng-if="pset.edit.mode === 0" class="btn btn-danger" ng-click="pset.deleteProblem(problem._id, $index )">Delete</button>
                 </td>

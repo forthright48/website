@@ -8,9 +8,10 @@ All notable changes are documented here.
 - Show login success or failure notification
 - Problem List is retrieved every time route changes. Use service to fix it.
 
-## [0.0.6] - 2015-12-11
+## [0.0.6] - 2015-12-12
 ### Added
 - Row edit form in Psetting table.
+- freezeOnEdit filter.
 
 ## [0.0.5] - 2015-12-10
 ### Added
