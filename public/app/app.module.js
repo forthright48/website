@@ -21,9 +21,7 @@
             label: "login"
         })
         .when ( "/learnDev", {
-            templateUrl: "app/learnDev/learnDev.html",
-            controller: "learnDev.controller",
-            controllerAs: "learn",
+            template: "<learn-dev> </learn-dev>",
             label: "learn"
         })
         .otherwise ( {
