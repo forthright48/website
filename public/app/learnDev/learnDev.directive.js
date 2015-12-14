@@ -1,16 +1,13 @@
 (function(){
-    angular.module ( "app" ).directive ( "learnDev", function() {
+    angular.module ( "app" ).directive ( "learnDev", function( $compile ) {
         return {
             restrict: "E",
             templateUrl: "/app/learnDev/learnDev.html",
-            controller: function( $http, marked, $location, TOCService, $sce ){
+            controller: function( $http, marked, TOCService ){
                 var vm = this;
 
                 vm.data = "";
                 vm.scrollTo = scrollTo;
-                vm.basePath = "#" + $location.path();
-                vm.scrollTo = scrollTo;
-
 
                 activate();
 
@@ -19,7 +16,7 @@
                 function activate () {
                     console.log ( "activates" );
                     $http.get ( "https://api.github.com/repos/forthright48/learnDev/readme" ).then ( function( res ){
-                        vm.data = $sce.trustAsHtml( TOCService.insertTOC( marked ( atob ( res.data.content ) ) ) );
+                        vm.data = TOCService.insertTOC( marked ( atob ( res.data.content ) ) );
                     }, function(err){
                         vm.data = "Something Wrong";
                     });
@@ -29,7 +26,13 @@
                     console.log ( "yo" );
                 }
             },
-            controllerAs: "learn"
+            controllerAs: "learn",
+            bindToController: true,
+            link: function ( scope, ele, attrs, ctrl ) {
+                scope.$watch ( "learn.data", function() {
+                    $(".markdown").prepend($compile(ctrl.data)(scope));
+                })
+            }
         }
     })
 })();
