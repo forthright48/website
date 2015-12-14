@@ -3,11 +3,11 @@
         return {
             restrict: "E",
             templateUrl: "/app/learnDev/learnDev.html",
-            controller: function( $http, marked, TOCService ){
+            controller: function( $http, marked, TOCService, $location, $anchorScroll ){
                 var vm = this;
 
                 vm.data = "";
-                vm.scrollTo = scrollTo;
+                vm.scrollTo = scrollTo;         // ($event)
 
                 activate();
 
@@ -22,14 +22,17 @@
                     });
                 }
 
-                function scrollTo () {
-                    console.log ( "yo" );
+                function scrollTo ( id ) {
+                    $location.hash(id);
+                    $anchorScroll();
+                    $location.hash("");
                 }
             },
             controllerAs: "learn",
             bindToController: true,
             link: function ( scope, ele, attrs, ctrl ) {
-                scope.$watch ( "learn.data", function() {
+
+                scope.$watch ( "learn.data", function() { // Add the markdown file to view
                     $(".markdown").prepend($compile(ctrl.data)(scope));
                 })
             }
