@@ -8,6 +8,11 @@ All notable changes are documented here.
 - Show login success or failure notification
 - Problem List is retrieved every time route changes. Use service to fix it.
 
+## [0.0.7] - 2015-12-14
+### Added
+- Service for adding TOC on top of html
+- anchorScroll without reloading page.
+
 ## [0.0.6] - 2015-12-12
 ### Added
 - Row edit form in Psetting table.
