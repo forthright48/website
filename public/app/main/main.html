@@ -8,6 +8,7 @@
         <li><button class="btn btn-primary" ng-click="main.changeState ( 1 )">Blog</button></li>
         <li><button class="btn btn-primary" ng-click="main.changeState ( 2 )">Problem Setting</button></li>
         <li><button class="btn btn-primary" ng-click="main.changeState ( 3 )">Learn Dev</button></li>
+        <li><button class="btn btn-primary" ng-click="main.changeState ( 4 )">CPPS 101</button></li>
     </ul>
 </div>
 
@@ -32,6 +33,13 @@
         <p>A curated list of resources that helped me learn the ropes.</p>
 
         <a href="#/learnDev" class="btn btn-default">Take Me There</a>
+    </div>
+
+    <div ng-show="main.getState()==4">
+        <h2>CPPS 101</h2>
+        <p>Resources for Competitive Programming and Problem Solving</p>
+
+        <a href="#/cpps101/readme" class="btn btn-default">Take Me There</a>
     </div>
 
 </div>

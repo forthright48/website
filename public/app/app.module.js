@@ -24,7 +24,7 @@
             template: "<learn-dev> </learn-dev>",
             label: "learn"
         })
-        .when ( "/cpps101", {
+        .when ( "/cpps101/:filePath*", {
             templateUrl: "/app/cpps101/cpps101.html",
             label: "cpps101"
         })
