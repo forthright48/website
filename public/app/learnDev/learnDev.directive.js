@@ -3,6 +3,8 @@
         return {
             restrict: "E",
             templateUrl: "/app/learnDev/learnDev.html",
+            controllerAs: "learn",
+            bindToController: true,
             controller: function( $http, marked, TOCService, $location, $anchorScroll ){
                 var vm = this;
 
@@ -28,8 +30,6 @@
                     $location.hash("");
                 }
             },
-            controllerAs: "learn",
-            bindToController: true,
             link: function ( scope, ele, attrs, ctrl ) {
 
                 scope.$watch ( "learn.data", function() { // Add the markdown file to view

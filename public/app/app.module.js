@@ -24,6 +24,10 @@
             template: "<learn-dev> </learn-dev>",
             label: "learn"
         })
+        .when ( "/cpps101", {
+            templateUrl: "/app/cpps101/cpps101.html",
+            label: "cpps101"
+        })
         .otherwise ( {
             redirectTo: "/"
         });
