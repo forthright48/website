@@ -2,9 +2,7 @@
 All notable changes are documented here.
 
 ## TODO
-- Edit mode in "Problem Setting" Page.
 - Server side and front side form validation.
-- logOut
 - Show login success or failure notification
 - Problem List is retrieved every time route changes. Use service to fix it.
 
