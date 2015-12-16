@@ -33,7 +33,7 @@
             link: function ( scope, ele, attrs, ctrl ) {
 
                 scope.$watch ( "learn.data", function() { // Add the markdown file to view
-                    $(".markdown").prepend($compile(ctrl.data)(scope));
+                    $(".markdown-body").prepend($compile(ctrl.data)(scope));
                 })
             }
         }

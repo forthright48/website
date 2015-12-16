@@ -2,11 +2,12 @@
     angular.module("app").directive( "githubRepo", function( $compile, $timeout ){
         return {
             restrict: "E",
-            controller: function( $attrs, $routeParams, $http, marked ) {
+            controller: function( $attrs, $routeParams, $http, $location, marked ) {
                 var vm = this;
 
                 ///Use this git link to extract the file mentioned in path
                 var filePath = $routeParams.filePath;
+                var base = "/#" + $location.path().slice(0,-(filePath.length+1));
 
                 // Build github api link
                 var link = "";
@@ -16,10 +17,34 @@
 
                 // Call github api for content
                 $http.get ( link ).then ( function(res){
-                    vm.data = marked ( atob ( res.data.content ) );
+                    vm.data = addBaseLink ( marked ( atob ( res.data.content ) ), base );
                 }, function ( err ) {
                     console.log(err);
                 });
+
+
+                /*******************Implementaion**********************/
+
+                function addBaseLink( html, base ) {
+                    html = "<div>" + html + "</div>";
+
+                    html = $(html);
+
+                    // Find all link in the html
+                    $("a", html ).each( function(){
+                        var href = $(this).attr("href");
+                        if (!/^(f|ht)tps?:\/\//i.test(href)) {
+                            if ( href[0] != '/' ) href = "/" + href;
+                            href = base + href;
+                            $(this).attr("href",href);
+                            console.log( base, href );
+                        }
+
+                    });
+
+                    return html.html();
+                }
+
             },
             controllerAs: "git",
             bindToController: true,
