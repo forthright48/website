@@ -12,6 +12,17 @@
         <link rel="stylesheet" href="/css/mycss.css">
         <!-- endinjector -->
 
+
+        <!-- MathJAX -->
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    processEscapes: true
+                }
+            });
+        </script>
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
 
@@ -26,7 +37,7 @@
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/ng-breadcrumbs/dist/ng-breadcrumbs.min.js"></script>
         <script src="bower_components/marked/lib/marked.js"></script>

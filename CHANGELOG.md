@@ -8,6 +8,12 @@ All notable changes are documented here.
 - Show login success or failure notification
 - Problem List is retrieved every time route changes. Use service to fix it.
 
+## [0.0.8] - 20115-12-16
+### Added
+- Directive to handle github-repo content display
+- Add github api content using jquery
+- MathJax to render math.
+
 ## [0.0.7] - 2015-12-14
 ### Added
 - Service for adding TOC on top of html
