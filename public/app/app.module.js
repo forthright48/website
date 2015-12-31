@@ -1,7 +1,7 @@
 (function(){
-    var app = angular.module ( "app", ["ngRoute", "ng-breadcrumbs", "hc.marked"] );
+    var app = angular.module ( "app", ["ngRoute", "ng-breadcrumbs", "hc.marked", "angular-github-repo-display"] );
 
-    app.config ( function ( $routeProvider, $httpProvider) {
+    app.config ( function ( $routeProvider ) {
         $routeProvider.when( "/", {
             controller: "main.controller",
             controllerAs: "main",
