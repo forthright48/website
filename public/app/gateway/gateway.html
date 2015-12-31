@@ -2,4 +2,34 @@
     <h2 class="text-danger text-center"> Work in Progress</h2>
 
     <h1 class="page-header text-center">Gateway</h1>
+
+    <table class="table">
+        <thead>
+            <th>Name</th>
+            <th>OJ</th>
+
+            <!-- Show this to admin only -->
+            <th>Admin</th>
+        </thead>
+        <tbody>
+
+            <!-- Normal Data -->
+            <tr ng-if="gate.edit.mode == false" ng-repeat="prob in gate.problemList">
+                <td>{{prob.name}}</td>
+                <td>{{prob.oj}}</td>
+
+                <!-- This needs to be shown to admin only -->
+                <td><button class="btn btn-primary" ng-click="gate.editProblem($index)">Edit</button></td>
+            </tr>
+
+            <!-- Simply show the value that is being edited -->
+            <tr ng-if="gate.edit.mode">
+                <td><input type="text" ng-model="gate.edit.prob.name"></td>
+                <td><input type="text" ng-model="gate.edit.prob.oj"></td>
+
+                <td><button class="btn btn-primary" ng-click="gate.saveProblem()">Save</button></td>
+            </tr>
+
+        </tbody>
+    </table>
 </div>

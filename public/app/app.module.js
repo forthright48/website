@@ -30,6 +30,8 @@
         })
         .when ( "/gateway", {
             templateUrl: "/app/gateway/gateway.html",
+            controller: "gateway.controller",
+            controllerAs: "gate",
             label: "gateway"
         })
         .otherwise ( {
