@@ -25,9 +25,9 @@
             })
         }
 
-        function editProblem ( ind ) {
-            vm.edit.prob = vm.problemList[ind];
-            vm.edit.index = ind;
+        function editProblem ( prob ) {
+            vm.edit.prob = prob;
+            vm.edit.index = vm.problemList.indexOf(prob);
             vm.edit.mode = 'editProblem';
         }
 
@@ -60,10 +60,11 @@
             })
         }
 
-        function deleteProblem ( id, index ) {
+        function deleteProblem ( prob ) {
+            var index = vm.problemList.indexOf ( prob );
             if ( confirm ( "Are you sure?" ) == false ) return;
 
-            GatewayList.deleteProblemAsync ( id ).then ( function ( response ) {
+            GatewayList.deleteProblemAsync ( prob._id ).then ( function ( response ) {
                 vm.problemList.splice ( index, 1 );
             }, function ( err ) {
                 console.log ( err );

@@ -4,7 +4,7 @@
     <h1 class="page-header text-center">Gateway</h1>
 
     <!-- Hide this if not logged in: Insert Problem Details-->
-    <button class="btn btn-primary" ng-if="gate.isLoggedIn() && gate.edit.mode !== 'insertProblem'" ng-click="gate.edit.mode = 'insertProblem'">Insert Content</button>
+    <button class="btn btn-primary" ng-if="gate.isLoggedIn() && gate.edit.mode === 'display'" ng-click="gate.edit.mode = 'insertProblem'">Insert Content</button>
 
     <div ng-if="gate.edit.mode === 'insertProblem'">
         <!-- Insert Content -->
@@ -13,7 +13,7 @@
             <form novalidate>
                 <div class="form-group">
                     <label for="insert-form-index">Index</label>
-                    <input type="number" step="any" id="insert-form-index" class="form-control" ng-model="gate.tempForm.index" required>
+                    <input type="number" step="any" id="insert-form-index" class="form-control" ng-model="gate.tempForm.ind" required>
                 </div>
 
                 <div class="form-group">
@@ -86,7 +86,7 @@
         <h2 class="text-center">Edit Mode : <span class="text-danger">{{gate.edit.prob._id}}</span></h2>
         <div class="form-group">
             <label for="edit-form-index">Index</label>
-            <input type="number" step="any" id="edit-form-index" class="form-control" ng-model="gate.edit.prob.index" required>
+            <input type="number" step="any" id="edit-form-index" class="form-control" ng-model="gate.edit.prob.ind" required>
         </div>
 
         <div class="form-group">
@@ -151,7 +151,6 @@
     </form>
 
     <!-- Display Content -->
-
     <table class="table" ng-if="gate.edit.mode === 'display'"  >
         <thead>
             <th>Type</th>
@@ -159,9 +158,9 @@
             <th>Action</th>
         </thead>
         <tbody>
-
             <!-- Normal Data -->
-            <tr ng-repeat="prob in gate.problemList | orderBy:'index' ">
+            <tr ng-repeat="prob in gate.problemList | orderBy: 'ind' ">
+                <td>{{prob.ind}}</td>
                 <td>{{prob.type}}</td>
 
                 <td ng-if="prob.type === 'Text'">{{prob.textTitle}}</td>
@@ -171,16 +170,22 @@
                 <!-- This needs to be shown to admin only -->
                 <td>
                     <a ng-if="prob.type === 'Problem'" class="btn btn-primary" href="{{prob.link}}">Solve It</a>
-                    <button ng-if="prob.type === 'Text'" class="btn btn-primary" >Read It</button>
+                    <button ng-if="prob.type === 'Text'" class="btn btn-primary" ng-click="gate.edit.prob = prob; gate.edit.mode='readText'" >Read It</button>
 
                     <span ng-if="gate.isLoggedIn()">
-                        <button class="btn btn-primary" ng-click="gate.editProblem($index)">Edit</button>
-                        <button class="btn btn-danger" ng-click="gate.deleteProblem(prob._id, $index)">Delete</button>
+                        <button class="btn btn-primary" ng-click="gate.editProblem(prob)">Edit</button>
+                        <button class="btn btn-danger" ng-click="gate.deleteProblem(prob )">Delete</button>
                     </span>
                 </td>
 
             </tr>
-
         </tbody>
     </table>
+
+    <!-- Read Mode -->
+    <div ng-if="gate.edit.mode === 'readText'">
+        <h2>{{gate.edit.prob.textTitle}}</h2>
+        <pre>{{gate.edit.prob.textBody}}</pre>
+        <button class="btn btn-primary" ng-click="gate.edit.mode='display'">Done</button>
+    </div>
 </div>
