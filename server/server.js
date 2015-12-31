@@ -48,6 +48,7 @@ mongoose.connect ( 'mongodb://'+connection_string );
 // Mongoose configuration with different tables
 require ( "./models/psetting.js")(app); // Connect app with RESTful api for psetting
 require ( "./models/user.js")(app); // Connect login and register API
+require ( "./models/gateway.js")(app); // RESTful api for Gateway
 
 /********************/
 

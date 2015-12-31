@@ -21,7 +21,6 @@
         function activate() {
 
             if ( vm.problems.length == 0 ) { // Populate when array is empty
-                console.log ( "Populating Problems" );
                 ProblemList.getProblemsAsync().then ( function( response) {
                     vm.problems = response.data;
                 }, function ( response ) {
@@ -31,7 +30,6 @@
         }
 
         function insertProblem () {
-            console.log ( AuthService.getToken() );
             vm.disable = 1;
             ProblemList.insertProblemAsync ( vm.form ).then ( function ( response) {
                 vm.form = {};

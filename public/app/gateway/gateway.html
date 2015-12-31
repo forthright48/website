@@ -19,7 +19,11 @@
                 <td>{{prob.oj}}</td>
 
                 <!-- This needs to be shown to admin only -->
-                <td><button class="btn btn-primary" ng-click="gate.editProblem($index)">Edit</button></td>
+                <td>
+                    <button class="btn btn-primary" ng-click="gate.editProblem($index)">Edit</button>
+                    <button class="btn btn-danger" ng-click="gate.deleteProblem(prob._id, $index)">Delete</button>
+                </td>
+
             </tr>
 
             <!-- Simply show the value that is being edited -->
@@ -28,6 +32,13 @@
                 <td><input type="text" ng-model="gate.edit.prob.oj"></td>
 
                 <td><button class="btn btn-primary" ng-click="gate.saveProblem()">Save</button></td>
+            </tr>
+
+            <!-- Add problem -->
+            <tr ng-if="gate.edit.mode == false">
+                <td><input type="text" ng-model="gate.tempForm.name"></td>
+                <td><input type="text" ng-model="gate.tempForm.oj"></td>
+                <td><button class="btn btn-primary" ng-click="gate.addProblem()" ng-disabled="gate.edit.disable">Submit</button></td>
             </tr>
 
         </tbody>
