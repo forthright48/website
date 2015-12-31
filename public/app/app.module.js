@@ -28,6 +28,10 @@
             templateUrl: "/app/cpps101/cpps101.html",
             label: "cpps101"
         })
+        .when ( "/gateway", {
+            templateUrl: "/app/gateway/gateway.html",
+            label: "gateway"
+        })
         .otherwise ( {
             redirectTo: "/"
         });

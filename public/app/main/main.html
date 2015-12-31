@@ -9,6 +9,7 @@
         <li><button class="btn btn-primary" ng-click="main.changeState ( 2 )">Problem Setting</button></li>
         <li><button class="btn btn-primary" ng-click="main.changeState ( 3 )">Learn Dev</button></li>
         <li><button class="btn btn-primary" ng-click="main.changeState ( 4 )">CPPS 101</button></li>
+        <li><button class="btn btn-primary" ng-click="main.changeState ( 5 )">Gateway</button></li>
     </ul>
 </div>
 
@@ -40,6 +41,13 @@
         <p>Resources for Competitive Programming and Problem Solving</p>
 
         <a href="#/cpps101/README.md" class="btn btn-default">Take Me There</a>
+    </div>
+
+    <div ng-show="main.getState()==5">
+        <h2>Gateway</h2>
+        <p>Something similart to USACO gateway, but made by me. Work in Progress.</p>
+
+        <a href="#/gateway" class="btn btn-default">Take Me There</a>
     </div>
 
 </div>
