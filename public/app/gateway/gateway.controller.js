@@ -9,10 +9,10 @@
         vm.tempForm = {};                           // Temporary
         vm.problemList = [];
 
-        vm.editProblem = editProblem;           // (index)
+        vm.editProblem = editProblem;           // ($index)
         vm.saveProblem = saveProblem;           // ()
         vm.addProblem = addProblem;             // ()
-        vm.deleteProblem = deleteProblem;
+        vm.deleteProblem = deleteProblem;       // (_id,$index)
 
         activate();
         /**********************Implementation**************************/
@@ -33,6 +33,12 @@
         function saveProblem () {
             vm.problemList[vm.edit.index] = vm.edit.prob;
             vm.edit.mode = false;
+
+            GatewayList.editProblemAsync ( vm.edit.prob ).then ( function ( response ) {
+                    if ( response.data.error ) console.log ( response.data.error );
+            }, function ( err ) {
+                    console.log ( err );
+            });
         }
 
         function addProblem() {

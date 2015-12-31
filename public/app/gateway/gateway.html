@@ -5,39 +5,49 @@
 
     <table class="table">
         <thead>
+            <th>#</th>
             <th>Name</th>
             <th>OJ</th>
 
-            <!-- Show this to admin only -->
-            <th>Admin</th>
         </thead>
         <tbody>
 
             <!-- Normal Data -->
             <tr ng-if="gate.edit.mode == false" ng-repeat="prob in gate.problemList">
+                <td>{{prob.num}}</td>
                 <td>{{prob.name}}</td>
                 <td>{{prob.oj}}</td>
 
                 <!-- This needs to be shown to admin only -->
                 <td>
+                    <a class="btn btn-info" href="{{prob.link}}">Solve It</a>
                     <button class="btn btn-primary" ng-click="gate.editProblem($index)">Edit</button>
                     <button class="btn btn-danger" ng-click="gate.deleteProblem(prob._id, $index)">Delete</button>
                 </td>
 
             </tr>
 
-            <!-- Simply show the value that is being edited -->
+            <!-- Edit Mode -->
             <tr ng-if="gate.edit.mode">
+                <td><input type="number" step="any" ng-model="gate.edit.prob.num"></td>
                 <td><input type="text" ng-model="gate.edit.prob.name"></td>
                 <td><input type="text" ng-model="gate.edit.prob.oj"></td>
 
                 <td><button class="btn btn-primary" ng-click="gate.saveProblem()">Save</button></td>
             </tr>
 
-            <!-- Add problem -->
+            <!-- Insert Mode -->
             <tr ng-if="gate.edit.mode == false">
+                <td>
+                    <select>
+                        <option value="Problem">Problem</option>
+                        <option value="Text">Text</option>
+                    </select>
+                </td>
+                <td><input type="number" step="any" ng-model="gate.tempForm.num"></td>
                 <td><input type="text" ng-model="gate.tempForm.name"></td>
                 <td><input type="text" ng-model="gate.tempForm.oj"></td>
+                <td><input type="text" ng-model="gate.tempForm.link" placeholder="Link"></td>
                 <td><button class="btn btn-primary" ng-click="gate.addProblem()" ng-disabled="gate.edit.disable">Submit</button></td>
             </tr>
 

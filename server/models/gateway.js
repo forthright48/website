@@ -2,8 +2,11 @@ var mongoose = require ( "mongoose" ),
     express = require ( "express" );
 
 var schema = new mongoose.Schema({
-    name: 'string',
-    oj: "string"
+    num: "number",
+    oj: "string",
+    pid: "string",
+    name: "string",
+    link: "string"
 });
 
 var Gate = mongoose.model("Gateway", schema );
@@ -30,10 +33,9 @@ function getAllProblems ( req, res ) {
 
 function addProblem ( req, res ) {
     if ( !req.body ) return res.status ( 500 ).send ( {error: "Something happened while posting in Gateway"});
-    Gate.create ( {
-        name: req.body.name,
-        oj: req.body.oj,
-    }, function ( err, data ) {
+
+    var sync = {};
+    Gate.create ( syncSchema ( sync, req ), function ( err, data ) {
         if ( err ) res.status ( 500 ).send ( {error: "Something happened while creating in Gateway"});
         else res.json ( data );
     });
@@ -51,8 +53,7 @@ function editProblem ( req, res ) {
         if ( err ) return res.status ( 500 ).send ( {error : "Database Retrieval Problem"} );
         else {
 
-            data.name = req.body.name;
-            data.oj = req.body.oj;
+            syncSchema ( data, req );
 
             data.save(function (err){
                 if ( err ) return res.status ( 500 ).send ( {error: "Server Side Saving Error"} );
@@ -60,4 +61,13 @@ function editProblem ( req, res ) {
             })
         }
     })
+}
+
+// Syncs db data with req body
+function syncSchema ( data, req ) {
+    data.num = req.body.num;
+    data.name = req.body.name;
+    data.oj = req.body.oj;
+    data.link = req.body.link;
+    return data;
 }
