@@ -1,9 +1,9 @@
 (function(){
-    angular.module ( "app" ).controller ( "gateway.controller", function( GatewayList ) {
+    angular.module ( "app" ).controller ( "gateway.controller", function( GatewayList, AuthService ) {
 
         var vm = this;
         vm.edit = {
-            mode: false,
+            mode: 'display',
             disable : false
         };
         vm.tempForm = {};                           // Temporary
@@ -13,6 +13,7 @@
         vm.saveProblem = saveProblem;           // ()
         vm.addProblem = addProblem;             // ()
         vm.deleteProblem = deleteProblem;       // (_id,$index)
+        vm.isLoggedIn = AuthService.isLoggedIn;
 
         activate();
         /**********************Implementation**************************/
@@ -27,17 +28,20 @@
         function editProblem ( ind ) {
             vm.edit.prob = vm.problemList[ind];
             vm.edit.index = ind;
-            vm.edit.mode = true;
+            vm.edit.mode = 'editProblem';
         }
 
         function saveProblem () {
             vm.problemList[vm.edit.index] = vm.edit.prob;
-            vm.edit.mode = false;
+            vm.edit.mode = 'display';
+            vm.disable = true;
 
             GatewayList.editProblemAsync ( vm.edit.prob ).then ( function ( response ) {
                     if ( response.data.error ) console.log ( response.data.error );
+                    vm.disable = false;
             }, function ( err ) {
                     console.log ( err );
+                    vm.disable = false;
             });
         }
 
@@ -47,10 +51,12 @@
                 vm.problemList.push ( response.data );
                 vm.tempForm = {};
                 vm.disable = false;
+                vm.showInsertForm = false;
             },function(error){
                 vm.tempForm = {};
                 console.log(error);
                 vm.disable = false;
+                vm.showInsertForm = false;
             })
         }
 

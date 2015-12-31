@@ -2,8 +2,11 @@ var mongoose = require ( "mongoose" ),
     express = require ( "express" );
 
 var schema = new mongoose.Schema({
-    num: "number",
-    oj: "string",
+    index: "number",
+    type: "string",
+    textTitle: "string",
+    textBody: "string",
+    platform: "string",
     pid: "string",
     name: "string",
     link: "string"
@@ -65,9 +68,15 @@ function editProblem ( req, res ) {
 
 // Syncs db data with req body
 function syncSchema ( data, req ) {
-    data.num = req.body.num;
+    data.index = req.body.index;
+    data.type = req.body.type;
+    data.textTitle = req.body.textTitle;
+    data.textBody = req.body.textBody;
+    data.platform = req.body.platform;
+    data.pid = req.body.pid;
     data.name = req.body.name;
-    data.oj = req.body.oj;
+    data.name = req.body.name;
     data.link = req.body.link;
+
     return data;
 }

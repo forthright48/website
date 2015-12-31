@@ -3,52 +3,182 @@
 
     <h1 class="page-header text-center">Gateway</h1>
 
-    <table class="table">
-        <thead>
-            <th>#</th>
-            <th>Name</th>
-            <th>OJ</th>
+    <!-- Hide this if not logged in: Insert Problem Details-->
+    <button class="btn btn-primary" ng-if="gate.isLoggedIn() && gate.edit.mode !== 'insertProblem'" ng-click="gate.edit.mode = 'insertProblem'">Insert Content</button>
 
+    <div ng-if="gate.edit.mode === 'insertProblem'">
+        <!-- Insert Content -->
+        <div>
+            <h2 class="text-center">Insert Content Form</h2>
+            <form novalidate>
+                <div class="form-group">
+                    <label for="insert-form-index">Index</label>
+                    <input type="number" step="any" id="insert-form-index" class="form-control" ng-model="gate.tempForm.index" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="insert-form-type">Select Type</label>
+                    <select id="insert-form-type" class="form-control" ng-model="gate.tempForm.type" required>
+                        <option value="Text" >Text</option>
+                        <option value="Problem">Problem</option>
+                    </select>
+                </div>
+
+                <!-- Text Material -->
+                <div ng-if="gate.tempForm.type === 'Text' ">
+                    <div class='form-group' >
+                        <label for="insert-form-text-title">Text Title</label>
+                        <input type="text" id="insert-form-text-title" class="form-control" ng-model="gate.tempForm.textTitle">
+                    </div>
+                    <div class="row">
+                        <div class='form-group col-md-6' >
+                            <label for="insert-form-text-body">Text Area</label>
+                            <textarea rows="10" id="insert-form-text-body" class="form-control" ng-model="gate.tempForm.textBody"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Preview</label>
+                            <textarea rows="10" disabled class="form-control" ng-model="gate.tempForm.textBody"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Problem Material -->
+                <div ng-if="gate.tempForm.type === 'Problem' ">
+
+                    <div class="form-group">
+                        <label for="insert-form-oj">Platform</label>
+                        <select id="insert-form-oj" class="form-control" ng-model="gate.tempForm.platform">
+                            <option value="UVa">UVa</option>
+                            <option value="CF">CodeForce</option>
+                            <option value="SPOJ">SPOJ</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="insert-form-pid">Problem ID</label>
+                        <input type="text" id="insert-form-pid" class="form-control" ng-model="gate.tempForm.pid">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="insert-form-name">Problem Name</label>
+                        <input type="text" id="insert-form-name" class="form-control" ng-model="gate.tempForm.name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="insert-form-link">Link</label>
+                        <input type="text" id="insert-form-link" class="form-control" ng-model="gate.tempForm.link">
+                    </div>
+
+                </div>
+
+                <div>
+                    <button class="btn btn-primary" ng-click="gate.addProblem()" ng-disabled="vm.disable">Submit</button>
+                    <button class="btn btn-danger" ng-click="gate.edit.mode='display'; gate.tempForm = {}" ng-disabled="vm.disable">Cancel</button>
+                </div>
+
+            </form>
+            <hr>
+        </div>
+    </div>
+
+    <!-- Edit Mode -->
+    <form ng-if="gate.edit.mode === 'editProblem'">
+        <h2 class="text-center">Edit Mode : <span class="text-danger">{{gate.edit.prob._id}}</span></h2>
+        <div class="form-group">
+            <label for="edit-form-index">Index</label>
+            <input type="number" step="any" id="edit-form-index" class="form-control" ng-model="gate.edit.prob.index" required>
+        </div>
+
+        <div class="form-group">
+            <label for="edit-form-type">Select Type</label>
+            <select id="edit-form-type" class="form-control" ng-model="gate.edit.prob.type" required>
+                <option value="Text" >Text</option>
+                <option value="Problem">Problem</option>
+            </select>
+        </div>
+
+        <!-- Text Material -->
+        <div ng-if="gate.edit.prob.type === 'Text' ">
+            <div class='form-group' >
+                <label for="edit-form-text-title">Text Title</label>
+                <input type="text" id="edit-form-text-title" class="form-control" ng-model="gate.edit.prob.textTitle">
+            </div>
+            <div class="row">
+                <div class='form-group col-md-6' >
+                    <label for="edit-form-text-body">Text Area</label>
+                    <textarea rows="10" id="edit-form-text-body" class="form-control" ng-model="gate.edit.prob.textBody"></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Preview</label>
+                    <textarea rows="10" disabled class="form-control" ng-model="gate.edit.prob.textBody"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Problem Material -->
+        <div ng-if="gate.edit.prob.type === 'Problem' ">
+
+            <div class="form-group">
+                <label for="edit-form-oj">Platform</label>
+                <select id="edit-form-oj" class="form-control" ng-model="gate.edit.prob.platform">
+                    <option value="UVa">UVa</option>
+                    <option value="CF">CodeForce</option>
+                    <option value="SPOJ">SPOJ</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-form-pid">Problem ID</label>
+                <input type="text" id="edit-form-pid" class="form-control" ng-model="gate.edit.prob.pid">
+            </div>
+
+            <div class="form-group">
+                <label for="edit-form-name">Problem Name</label>
+                <input type="text" id="edit-form-name" class="form-control" ng-model="gate.edit.prob.name">
+            </div>
+
+            <div class="form-group">
+                <label for="edit-form-link">Link</label>
+                <input type="text" id="edit-form-link" class="form-control" ng-model="gate.edit.prob.link">
+            </div>
+
+        </div>
+
+        <div>
+            <button class="btn btn-primary" ng-click="gate.saveProblem()" ng-disabled="vm.disable">Save</button>
+            <button class="btn btn-danger" ng-click="gate.edit.mode = 'display'" ng-disabled="vm.disable">Cancel</button>
+        </div>
+    </form>
+
+    <!-- Display Content -->
+
+    <table class="table" ng-if="gate.edit.mode === 'display'"  >
+        <thead>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Action</th>
         </thead>
         <tbody>
 
             <!-- Normal Data -->
-            <tr ng-if="gate.edit.mode == false" ng-repeat="prob in gate.problemList">
-                <td>{{prob.num}}</td>
-                <td>{{prob.name}}</td>
-                <td>{{prob.oj}}</td>
+            <tr ng-repeat="prob in gate.problemList | orderBy:'index' ">
+                <td>{{prob.type}}</td>
+
+                <td ng-if="prob.type === 'Text'">{{prob.textTitle}}</td>
+
+                <td ng-if="prob.type === 'Problem'">{{prob.platform}} {{prob.pid}} - {{prob.name}}</td>
 
                 <!-- This needs to be shown to admin only -->
                 <td>
-                    <a class="btn btn-info" href="{{prob.link}}">Solve It</a>
-                    <button class="btn btn-primary" ng-click="gate.editProblem($index)">Edit</button>
-                    <button class="btn btn-danger" ng-click="gate.deleteProblem(prob._id, $index)">Delete</button>
+                    <a ng-if="prob.type === 'Problem'" class="btn btn-primary" href="{{prob.link}}">Solve It</a>
+                    <button ng-if="prob.type === 'Text'" class="btn btn-primary" >Read It</button>
+
+                    <span ng-if="gate.isLoggedIn()">
+                        <button class="btn btn-primary" ng-click="gate.editProblem($index)">Edit</button>
+                        <button class="btn btn-danger" ng-click="gate.deleteProblem(prob._id, $index)">Delete</button>
+                    </span>
                 </td>
 
-            </tr>
-
-            <!-- Edit Mode -->
-            <tr ng-if="gate.edit.mode">
-                <td><input type="number" step="any" ng-model="gate.edit.prob.num"></td>
-                <td><input type="text" ng-model="gate.edit.prob.name"></td>
-                <td><input type="text" ng-model="gate.edit.prob.oj"></td>
-
-                <td><button class="btn btn-primary" ng-click="gate.saveProblem()">Save</button></td>
-            </tr>
-
-            <!-- Insert Mode -->
-            <tr ng-if="gate.edit.mode == false">
-                <td>
-                    <select>
-                        <option value="Problem">Problem</option>
-                        <option value="Text">Text</option>
-                    </select>
-                </td>
-                <td><input type="number" step="any" ng-model="gate.tempForm.num"></td>
-                <td><input type="text" ng-model="gate.tempForm.name"></td>
-                <td><input type="text" ng-model="gate.tempForm.oj"></td>
-                <td><input type="text" ng-model="gate.tempForm.link" placeholder="Link"></td>
-                <td><button class="btn btn-primary" ng-click="gate.addProblem()" ng-disabled="gate.edit.disable">Submit</button></td>
             </tr>
 
         </tbody>

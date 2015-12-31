@@ -12,7 +12,7 @@
         vm.deleteProblem = deleteProblem;       //( id, index )
         vm.startEdit = startEdit;               //( id )
         vm.doneEdit = doneEdit;                 //( problem )
-        vm.isLoggedIn = isLoggedIn;             //()
+        vm.isLoggedIn = AuthService.isLoggedIn;       
 
         activate();
 
@@ -67,10 +67,6 @@
             }, function ( err ) {
                     console.log ( err );
             });
-        }
-
-        function isLoggedIn() {
-            return AuthService.isLoggedIn();
         }
 
     });
