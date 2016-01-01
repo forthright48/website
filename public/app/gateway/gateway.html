@@ -153,6 +153,7 @@
     <!-- Display Content -->
     <table class="table" ng-if="gate.edit.mode === 'display'"  >
         <thead>
+            <th>#</th>
             <th>Type</th>
             <th>Name</th>
             <th>Action</th>
@@ -160,7 +161,7 @@
         <tbody>
             <!-- Normal Data -->
             <tr ng-repeat="prob in gate.problemList | orderBy: 'ind' ">
-                <td>{{prob.ind}}</td>
+                <td>{{$index+1}}</td>
                 <td>{{prob.type}}</td>
 
                 <td ng-if="prob.type === 'Text'">{{prob.textTitle}}</td>
@@ -169,7 +170,7 @@
 
                 <!-- This needs to be shown to admin only -->
                 <td>
-                    <a ng-if="prob.type === 'Problem'" class="btn btn-primary" href="{{prob.link}}">Solve It</a>
+                    <a ng-if="prob.type === 'Problem'" class="btn btn-primary" href="{{prob.link}}" target="_blank">Solve It</a>
                     <button ng-if="prob.type === 'Text'" class="btn btn-primary" ng-click="gate.edit.prob = prob; gate.edit.mode='readText'" >Read It</button>
 
                     <span ng-if="gate.isLoggedIn()">
