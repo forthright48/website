@@ -185,8 +185,9 @@
 
     <!-- Read Mode -->
     <div ng-if="gate.edit.mode === 'readText'">
-        <h2>{{gate.edit.prob.textTitle}}</h2>
-        <pre>{{gate.edit.prob.textBody}}</pre>
+        <div>
+            <markdown-view text="gate.edit.prob.textBody"></markdown-view>
+        </div>
         <button class="btn btn-primary" ng-click="gate.edit.mode='display'">Done</button>
     </div>
 </div>
