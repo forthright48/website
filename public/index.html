@@ -31,7 +31,6 @@
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/marked/lib/marked.js"></script>
         <script src="bower_components/angular-marked/dist/angular-marked.js"></script>
-        <script src="bower_components/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML,local/local"></script>
         <script src="bower_components/angular-github-repo-display/dist/angular-github-repo-display.js"></script>
         <!-- endbower -->
 
@@ -52,5 +51,19 @@
         <script src="/app/psetting/ProblemList/ProblemList.factory.js"></script>
         <script src="/app/psetting/psetting.controller.js"></script>
         <!-- endinjector -->
+
+        <!-- MathJax Configuration -->
+        <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
     </body>
 </html>

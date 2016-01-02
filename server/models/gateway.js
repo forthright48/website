@@ -9,7 +9,8 @@ var schema = new mongoose.Schema({
     platform: "string",
     pid: "string",
     name: "string",
-    link: "string"
+    link: "string",
+    hint: "string"
 });
 
 var Gate = mongoose.model("Gateway", schema );
@@ -77,6 +78,7 @@ function syncSchema ( data, req ) {
     data.name = req.body.name;
     data.name = req.body.name;
     data.link = req.body.link;
+    data.hint = req.body.hint;
 
     return data;
 }
