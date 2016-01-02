@@ -3,14 +3,14 @@ var express = require("express"),
     path = require ( "path" ),
     mongoose = require ( "mongoose" ),
     bodyParser = require ( "body-parser"),
-    secret = process.env.OPENSHIFT_SECRET_TOKEN || require("./secret.js").secret, ///Secret object
+    secret = process.env.SECRET_TOKEN || require("./secret.js").secret, ///Secret object
     expressjwt = require ( "express-jwt"),
     http = require ( "http" );
 
 // Set constants
 app.set ( "superSecret", secret );
-app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 48 );
-app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
+app.set('port', process.env.PORT || process.env.PORT || 48 );
+app.set('ip', process.env.IP || "127.0.0.1");
 
 // Set Middlewareses
 app.use ( express.static ( path.join( __dirname, "../public" ) ) ); // Serve Public Files
@@ -23,7 +23,6 @@ app.use ( "/api/auth", expressjwt({secret: secret}) ); // Check for JWT in /api/
 /*MongoDB        */
 /*****************/
 
-
 // Mongoose Connection Code
 mongoose.connection.on('open', function (ref) {
   console.log('Connected to mongo server.');
@@ -33,17 +32,7 @@ mongoose.connection.on('error', function (err) {
   console.log(err);
 });
 
-// default to a 'localhost' configuration:
-var connection_string = '127.0.0.1:27017/myapp';
-// if OPENSHIFT env variables are present, use the available connection info:
-if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
-  connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
-  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
-  process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
-  process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
-  process.env.OPENSHIFT_APP_NAME;
-}
-mongoose.connect ( 'mongodb://'+connection_string );
+mongoose.connect ( process.env.MONGOLAB_URI || require("./secret.js").db );
 
 // Mongoose configuration with different tables
 require ( "./models/psetting.js")(app); // Connect app with RESTful api for psetting
