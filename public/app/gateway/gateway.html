@@ -69,6 +69,17 @@
                         <input type="text" id="insert-form-link" class="form-control" ng-model="gate.tempForm.link">
                     </div>
 
+                    <div class="row">
+                        <div class='form-group col-md-6' >
+                            <label for="insert-form-hint">Hint</label>
+                            <textarea rows="10" id="insert-form-hint" class="form-control" ng-model="gate.tempForm.hint"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Preview</label>
+                            <textarea rows="10" disabled class="form-control" ng-model="gate.tempForm.hint"></textarea>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div>
@@ -142,6 +153,17 @@
                 <input type="text" id="edit-form-link" class="form-control" ng-model="gate.edit.prob.link">
             </div>
 
+            <div class="row">
+                <div class='form-group col-md-6' >
+                    <label for="edit-form-hint">Hint</label>
+                    <textarea rows="10" id="edit-form-hint" class="form-control" ng-model="gate.edit.prob.hint"></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Preview</label>
+                    <textarea rows="10" disabled class="form-control" ng-model="gate.edit.prob.hint"></textarea>
+                </div>
+            </div>
+
         </div>
 
         <div>
@@ -171,6 +193,8 @@
                 <!-- This needs to be shown to admin only -->
                 <td>
                     <a ng-if="prob.type === 'Problem'" class="btn btn-primary" href="{{prob.link}}" target="_blank">Solve It</a>
+                    <button ng-if="prob.type === 'Problem'" class="btn btn-danger" ng-click="gate.edit.prob = prob; gate.edit.mode='readHint'" >Hints</button>
+
                     <button ng-if="prob.type === 'Text'" class="btn btn-primary" ng-click="gate.edit.prob = prob; gate.edit.mode='readText'" >Read It</button>
 
                     <span ng-if="gate.isLoggedIn()">
@@ -187,6 +211,13 @@
     <div ng-if="gate.edit.mode === 'readText'">
         <div>
             <markdown-view text="gate.edit.prob.textBody"></markdown-view>
+        </div>
+        <button class="btn btn-primary" ng-click="gate.edit.mode='display'">Done</button>
+    </div>
+
+    <div ng-if="gate.edit.mode === 'readHint'">
+        <div>
+            <markdown-view text="gate.edit.prob.hint"></markdown-view>
         </div>
         <button class="btn btn-primary" ng-click="gate.edit.mode='display'">Done</button>
     </div>
