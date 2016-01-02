@@ -13,7 +13,6 @@
   "dependencies": {
     "bootstrap": "3.3.4",
     "angular": "~1.4.8",
-    "ng-breadcrumbs": "~0.4.1",
     "angular-route": "~1.4.8",
     "angular-marked": "~1.0.1",
     "angular-github-repo-display": "~0.0.3"
