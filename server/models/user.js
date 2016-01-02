@@ -2,7 +2,7 @@ var mongoose = require ( "mongoose" ),
     express = require ( "express" ),
     jwt = require ( "jsonwebtoken"), // Chill. everything is at req.user thanks to express-jwt
     bcrypt = require ( "bcryptjs" ),
-    secret = process.env.OPENSHIFT_SECRET_TOKEN || require("../secret.js").secret;
+    secret = process.env.SECRET_TOKEN || require("../secret.js").secret;
 
 var schema = new mongoose.Schema ( {
     username: "string",
