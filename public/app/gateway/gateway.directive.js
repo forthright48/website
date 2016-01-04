@@ -7,7 +7,6 @@
             link: function ( scope, ele, attrs, ctrl ) {
                 var data;
                 scope.$watch ( attrs.text, function ( value ) {
-                    console.log(value);
                     data = marked ( value );
                 })
 

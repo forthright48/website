@@ -21,7 +21,7 @@
                 $http.get ( "/api/auth/tokenVerify").then( function( response ){
                     loggedIn = true;
                 }, function( response ){
-                    loggedIn = false;
+                    logOut();
                 });
             }
             return loggedIn;
