@@ -5,17 +5,28 @@
     <div>
         <h2 class="text-center">Insert Content Form</h2>
         <form novalidate>
-            <div class="form-group">
-                <label for="insert-form-index">Index</label>
-                <input type="number" step="any" id="insert-form-index" class="form-control" ng-model="gate.tempForm.ind" required>
-            </div>
 
-            <div class="form-group">
-                <label for="insert-form-type">Select Type</label>
-                <select id="insert-form-type" class="form-control" ng-model="gate.tempForm.type" required>
-                    <option value="Text" >Text</option>
-                    <option value="Problem">Problem</option>
-                </select>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="insert-form-section">Section: </label>
+                    <input id ="insert-form-section" type="number" step="any" class="form-control" ng-model="gate.tempForm.section">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="insert-form-chapter">Chapter: </label>
+                    <input id ="insert-form-chapter" type="number" step="any" class="form-control" ng-model="gate.tempForm.chapter">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="insert-form-task">Task: </label>
+                    <input id ="insert-form-task" type="number" step="any" class="form-control" ng-model="gate.tempForm.task">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="insert-form-type">Select Type</label>
+                    <select id="insert-form-type" class="form-control" ng-model="gate.tempForm.type" required>
+                        <option value="Text" >Text</option>
+                        <option value="Problem">Problem</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Text Material -->
@@ -39,24 +50,27 @@
             <!-- Problem Material -->
             <div ng-if="gate.tempForm.type === 'Problem' ">
 
-                <div class="form-group">
-                    <label for="insert-form-oj">Platform</label>
-                    <select id="insert-form-oj" class="form-control" ng-model="gate.tempForm.platform">
-                        <option value="UVa">UVa</option>
-                        <option value="CF">CodeForce</option>
-                        <option value="SPOJ">SPOJ</option>
-                    </select>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="insert-form-oj">Platform</label>
+                        <select id="insert-form-oj" class="form-control" ng-model="gate.tempForm.platform">
+                            <option value="UVa">UVa</option>
+                            <option value="CF">CodeForce</option>
+                            <option value="SPOJ">SPOJ</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="insert-form-pid">Problem ID</label>
+                        <input type="text" id="insert-form-pid" class="form-control" ng-model="gate.tempForm.pid">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="insert-form-name">Problem Name</label>
+                        <input type="text" id="insert-form-name" class="form-control" ng-model="gate.tempForm.name">
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="insert-form-pid">Problem ID</label>
-                    <input type="text" id="insert-form-pid" class="form-control" ng-model="gate.tempForm.pid">
-                </div>
-
-                <div class="form-group">
-                    <label for="insert-form-name">Problem Name</label>
-                    <input type="text" id="insert-form-name" class="form-control" ng-model="gate.tempForm.name">
-                </div>
 
                 <div class="form-group">
                     <label for="insert-form-link">Link</label>
