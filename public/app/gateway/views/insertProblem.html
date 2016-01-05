@@ -1,0 +1,87 @@
+<!-- Insert Content -->
+<div>
+
+
+    <div>
+        <h2 class="text-center">Insert Content Form</h2>
+        <form novalidate>
+            <div class="form-group">
+                <label for="insert-form-index">Index</label>
+                <input type="number" step="any" id="insert-form-index" class="form-control" ng-model="gate.tempForm.ind" required>
+            </div>
+
+            <div class="form-group">
+                <label for="insert-form-type">Select Type</label>
+                <select id="insert-form-type" class="form-control" ng-model="gate.tempForm.type" required>
+                    <option value="Text" >Text</option>
+                    <option value="Problem">Problem</option>
+                </select>
+            </div>
+
+            <!-- Text Material -->
+            <div ng-if="gate.tempForm.type === 'Text' ">
+                <div class='form-group' >
+                    <label for="insert-form-text-title">Text Title</label>
+                    <input type="text" id="insert-form-text-title" class="form-control" ng-model="gate.tempForm.textTitle">
+                </div>
+                <div class="row">
+                    <div class='form-group col-md-6' >
+                        <label for="insert-form-text-body">Text Area</label>
+                        <textarea rows="10" id="insert-form-text-body" class="form-control" ng-model="gate.tempForm.textBody"></textarea>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Preview</label>
+                        <textarea rows="10" disabled class="form-control" ng-model="gate.tempForm.textBody"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Problem Material -->
+            <div ng-if="gate.tempForm.type === 'Problem' ">
+
+                <div class="form-group">
+                    <label for="insert-form-oj">Platform</label>
+                    <select id="insert-form-oj" class="form-control" ng-model="gate.tempForm.platform">
+                        <option value="UVa">UVa</option>
+                        <option value="CF">CodeForce</option>
+                        <option value="SPOJ">SPOJ</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="insert-form-pid">Problem ID</label>
+                    <input type="text" id="insert-form-pid" class="form-control" ng-model="gate.tempForm.pid">
+                </div>
+
+                <div class="form-group">
+                    <label for="insert-form-name">Problem Name</label>
+                    <input type="text" id="insert-form-name" class="form-control" ng-model="gate.tempForm.name">
+                </div>
+
+                <div class="form-group">
+                    <label for="insert-form-link">Link</label>
+                    <input type="text" id="insert-form-link" class="form-control" ng-model="gate.tempForm.link">
+                </div>
+
+                <div class="row">
+                    <div class='form-group col-md-6' >
+                        <label for="insert-form-hint">Hint</label>
+                        <textarea rows="10" id="insert-form-hint" class="form-control" ng-model="gate.tempForm.hint"></textarea>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Preview</label>
+                        <textarea rows="10" disabled class="form-control" ng-model="gate.tempForm.hint"></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <div>
+                <button class="btn btn-primary" ng-click="gate.addProblem()" ng-disabled="vm.disable">Submit</button>
+                <button class="btn btn-danger" ng-click="gate.edit.mode='display'; gate.tempForm = {}" ng-disabled="vm.disable">Cancel</button>
+            </div>
+
+        </form>
+        <hr>
+    </div>
+</div>

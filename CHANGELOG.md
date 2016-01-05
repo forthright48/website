@@ -1,12 +1,28 @@
 # Change Log
 All notable changes are documented here.
 
-## TODO
+# TODO
+### Features
+- Show highest index in gateway.
+- Don't show "Hint" if none is present.
 - Server side and front side form validation.
-- Show login success or failure notification
+- Show login success or failure notification.
+- Show markdown preview in edit mode of gateway.
+### Optimization
 - Problem List is retrieved every time route changes. Use service to fix it.
+### Organization
+- Move gateway display modes to separate files and use ng-include.
+### Important
+- Add section field and categorize according to section.
+- Add a uncategorized field in Gateway.
 
-## [0.0.8] - 20115-12-16
+# Done
+
+## [0.0.9] - 2016-01-04
+### Added
+- Gateway
+
+## [0.0.8] - 2015-12-16
 ### Added
 - Directive to handle github-repo content display
 - Add github api content using jquery

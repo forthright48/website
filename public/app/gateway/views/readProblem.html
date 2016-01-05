@@ -1,0 +1,13 @@
+<div ng-if="gate.edit.mode === 'readText'">
+    <div>
+        <markdown-view text="gate.edit.prob.textBody"></markdown-view>
+    </div>
+    <button class="btn btn-primary" ng-click="gate.edit.mode='display'">Done</button>
+</div>
+
+<div ng-if="gate.edit.mode === 'readHint'">
+    <div>
+        <markdown-view text="gate.edit.prob.hint"></markdown-view>
+    </div>
+    <button class="btn btn-primary" ng-click="gate.edit.mode='display'">Done</button>
+</div>
