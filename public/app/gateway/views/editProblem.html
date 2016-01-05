@@ -1,14 +1,27 @@
 <form>
     <h2 class="text-center">Edit Mode : <span class="text-danger">{{gate.edit.prob._id}}</span></h2>
 
-    
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label for="edit-form-section">Section: </label>
+            <input id ="edit-form-section" type="number" step="any" class="form-control" ng-model="gate.edit.prob.section">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="edit-form-chapter">Chapter: </label>
+            <input id ="edit-form-chapter" type="number" step="any" class="form-control" ng-model="gate.edit.prob.chapter">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="edit-form-task">Task: </label>
+            <input id ="edit-form-task" type="number" step="any" class="form-control" ng-model="gate.edit.prob.task">
+        </div>
 
-    <div class="form-group">
-        <label for="edit-form-type">Select Type</label>
-        <select id="edit-form-type" class="form-control" ng-model="gate.edit.prob.type" required>
-            <option value="Text" >Text</option>
-            <option value="Problem">Problem</option>
-        </select>
+        <div class="form-group col-md-3">
+            <label for="edit-form-type">Select Type</label>
+            <select id="edit-form-type" class="form-control" ng-model="gate.edit.prob.type" required>
+                <option value="Text" >Text</option>
+                <option value="Problem">Problem</option>
+            </select>
+        </div>
     </div>
 
     <!-- Text Material -->
@@ -32,24 +45,27 @@
     <!-- Problem Material -->
     <div ng-if="gate.edit.prob.type === 'Problem' ">
 
-        <div class="form-group">
-            <label for="edit-form-oj">Platform</label>
-            <select id="edit-form-oj" class="form-control" ng-model="gate.edit.prob.platform">
-                <option value="UVa">UVa</option>
-                <option value="CF">CodeForce</option>
-                <option value="SPOJ">SPOJ</option>
-            </select>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="edit-form-oj">Platform</label>
+                <select id="edit-form-oj" class="form-control" ng-model="gate.edit.prob.platform">
+                    <option value="UVa">UVa</option>
+                    <option value="CF">CodeForce</option>
+                    <option value="SPOJ">SPOJ</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="edit-form-pid">Problem ID</label>
+                <input type="text" id="edit-form-pid" class="form-control" ng-model="gate.edit.prob.pid">
+            </div>
+    
+            <div class="form-group col-md-4">
+                <label for="edit-form-name">Problem Name</label>
+                <input type="text" id="edit-form-name" class="form-control" ng-model="gate.edit.prob.name">
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="edit-form-pid">Problem ID</label>
-            <input type="text" id="edit-form-pid" class="form-control" ng-model="gate.edit.prob.pid">
-        </div>
-
-        <div class="form-group">
-            <label for="edit-form-name">Problem Name</label>
-            <input type="text" id="edit-form-name" class="form-control" ng-model="gate.edit.prob.name">
-        </div>
 
         <div class="form-group">
             <label for="edit-form-link">Link</label>
