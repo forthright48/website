@@ -6,14 +6,18 @@
             getProblemsAsync: getProblemsAsync,
             insertProblemAsync: insertProblemAsync,             //(form)
             editProblemAsync: editProblemAsync,
-            deleteProblemAsync : deleteProblemAsync
+            deleteProblemAsync : deleteProblemAsync,
+            getAllProblemsAsync: getAllProblemsAsync
         }
 
         return service;
 
         /***********Implementation***********************/
-        function getProblemsAsync () {
-            return $http.get ( "/api/gateway");
+        function getAllProblemsAsync () {
+            return $http.get ( "/api/gateway" );
+        }
+        function getProblemsAsync ( section, chapter ) {
+            return $http.get ( "/api/gateway/" + section + "/" + chapter );
         }
         function insertProblemAsync ( form ) {
             return $http.post ( "/api/auth/gateway", form );

@@ -1,0 +1,65 @@
+<div class="row">
+
+    <!-- Select a Section -->
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <th>Section</th>
+            </thead>
+            <tbody class="fake-link">
+                <tr><td ng-class="gate.isSelected(1,1)" ng-click="gate.selectSection(1)">01 Combinatorics</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Display Chapters According to Section -->
+    <div class="col-md-6" ng-if="gate.section != 0">
+        <table class="table">
+            <thead>
+                <th>Chapter</th>
+            </thead>
+
+            <!-- Different body for different sections -->
+
+            <tbody class="fake-link" ng-if="gate.section === 1" >
+                <tr><td ng-class="gate.isSelected(2,1)" ng-click="gate.selectChapter(1)">01 Combination</td></tr>
+                <tr><td ng-class="gate.isSelected(2,2)" ng-click="gate.selectChapter(2)">02 Multinomial Theorem</td></tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<table class="table" ng-if="gate.chapter !== 0">
+    <thead>
+        <th>#</th>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        <!-- Normal Data -->
+        <tr ng-repeat="prob in gate.problemList | orderBy:'task' ">
+            <td>{{$index+1}}</td>
+            <td>{{prob.type}}</td>
+
+            <td ng-if="prob.type === 'Text'">{{prob.textTitle}}</td>
+
+            <td ng-if="prob.type === 'Problem'">{{prob.platform}} {{prob.pid}} - {{prob.name}}</td>
+
+            <!-- This needs to be shown to admin only -->
+            <td>
+                <a ng-if="prob.type === 'Problem'" class="btn btn-primary" href="{{prob.link}}" target="_blank">Solve It</a>
+                <button ng-if="prob.type === 'Problem'" class="btn btn-danger" ng-click="gate.edit.prob = prob; gate.edit.mode='readHint'" >Hints</button>
+
+                <button ng-if="prob.type === 'Text'" class="btn btn-primary" ng-click="gate.edit.prob = prob; gate.edit.mode='readText'" >Read It</button>
+
+                <span ng-if="gate.isLoggedIn()">
+                    <button class="btn btn-primary" ng-click="gate.editProblem(prob)">Edit</button>
+                    <button class="btn btn-danger" ng-click="gate.deleteProblem(prob )">Delete</button>
+                </span>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

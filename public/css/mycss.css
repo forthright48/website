@@ -1,3 +1,9 @@
+.fake-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 a[ng-click]{
     cursor: pointer;
 }
@@ -32,3 +38,14 @@ body {
 }
 
 /*MarkDown End*/
+
+/*Gateway TOC*/
+td[ng-click] {
+    cursor: pointer;
+}
+td[ng-click]:hover {
+    background-color: yellow;
+}
+.selected {
+    background-color: lightgray;
+}

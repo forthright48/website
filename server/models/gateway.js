@@ -2,6 +2,9 @@ var mongoose = require ( "mongoose" ),
     express = require ( "express" );
 
 var schema = new mongoose.Schema({
+    section: "number",
+    chapter: "number",
+    task: "number",
     type: "string",
     textTitle: "string",
     textBody: "string",
@@ -16,6 +19,7 @@ var Gate = mongoose.model("Gateway", schema );
 
 var router = express.Router();
 
+router.get ( "/gateway/:section/:chapter", getProblems );
 router.get ( "/gateway", getAllProblems );
 router.post ( "/auth/gateway", addProblem );
 router.delete ( "/auth/gateway/:p_id", deleteProblem );
@@ -27,12 +31,20 @@ module.exports = function ( app ) {
 
 /********************Implementation*********************/
 
+function getProblems ( req, res ) {
+    Gate.find({ section : req.params.section, chapter : req.params.chapter },function( err, data ){
+        if ( err ) res.status ( 500 ).send ( {error: "Something occured when dealing with Gateway database"});
+        else res.json ( data );
+    });
+}
+
 function getAllProblems ( req, res ) {
     Gate.find({},function( err, data ){
         if ( err ) res.status ( 500 ).send ( {error: "Something occured when dealing with Gateway database"});
         else res.json ( data );
     });
 }
+
 
 function addProblem ( req, res ) {
     if ( !req.body ) return res.status ( 500 ).send ( {error: "Something happened while posting in Gateway"});
@@ -68,6 +80,9 @@ function editProblem ( req, res ) {
 
 // Syncs db data with req body
 function syncSchema ( data, req ) {
+    data.section = req.body.section;
+    data.chapter = req.body.chapter;
+    data.task = req.body.task;
     data.type = req.body.type;
     data.textTitle = req.body.textTitle;
     data.textBody = req.body.textBody;

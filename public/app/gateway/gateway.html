@@ -5,15 +5,16 @@
 
     <!-- Hide this if not logged in: Insert Problem Details-->
     <button class="btn btn-primary" ng-if="gate.isLoggedIn() && gate.edit.mode === 'display'" ng-click="gate.edit.mode = 'insertProblem'">Insert Content</button>
+    
     <div ng-if="gate.edit.mode === 'insertProblem'" ng-include="'/app/gateway/views/insertProblem.html'"></div>
 
     <!-- Edit Mode -->
     <div ng-if="gate.edit.mode === 'editProblem'" ng-include="'/app/gateway/views/editProblem.html'"> </div>
 
     <!-- Display Content -->
-    <div ng-if="gate.edit.mode === 'display'" ng-include="'/app/gateway/views/displayProblem.html'" ></div>
+    <div ng-if="gate.edit.mode === 'display'" ng-include="'/app/gateway/views/tableOfContents.html'" ></div>
 
     <!-- Read Mode -->
     <div ng-include="'/app/gateway/views/readProblem.html'"></div>
-    
+
 </div>

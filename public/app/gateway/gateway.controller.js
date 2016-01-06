@@ -6,6 +6,13 @@
             mode: 'display',
             disable : false
         };
+
+        vm.section = 0;
+        vm.chapter = 0;
+        vm.task = 0;
+        vm.selectSection = selectSection;       // ( sec )
+        vm.selectChapter = selectChapter;
+
         vm.tempForm = {};                           // Temporary
         vm.problemList = [];
 
@@ -14,16 +21,9 @@
         vm.addProblem = addProblem;             // ()
         vm.deleteProblem = deleteProblem;       // (_id,$index)
         vm.isLoggedIn = AuthService.isLoggedIn;
+        vm.isSelected = isSelected;                     // (table,row)
 
-        activate();
         /**********************Implementation**************************/
-        function activate() {
-            GatewayList.getProblemsAsync().then( function ( response ) {
-                vm.problemList = response.data;
-            }, function ( error) {
-                console.log( error );
-            })
-        }
 
         function editProblem ( prob ) {
             vm.edit.prob = prob;
@@ -69,6 +69,41 @@
             }, function ( err ) {
                 console.log ( err );
             });
+        }
+
+        function isSelected ( table, row ) {
+            var res = "selected";
+            if ( table === 1 && vm.section === row ) return res;
+            else if ( table === 2 && vm.chapter === row ) return res;
+            else if ( table === 3 && vm.task === row ) return res;
+            else return "";
+        }
+
+        function selectSection ( sec ) {
+            vm.section = sec;
+            vm.chapter = 0;
+        }
+        function selectChapter ( ch ) {
+            vm.chapter = ch;
+            getProblemList();
+        }
+
+        function getProblemList(){
+            vm.problemList = [];
+
+            // To display all problems
+            
+            // GatewayList.getAllProblemsAsync().then( function ( response ) {
+            //     vm.problemList = response.data;
+            // }, function ( error) {
+            //     console.log( error );
+            // })
+
+            GatewayList.getProblemsAsync( vm.section, vm.chapter ).then( function ( response ) {
+                vm.problemList = response.data;
+            }, function ( error) {
+                console.log( error );
+            })
         }
     });
 })();
