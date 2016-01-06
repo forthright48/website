@@ -6,8 +6,8 @@
             <thead>
                 <th>Section</th>
             </thead>
-            <tbody class="fake-link">
-                <tr><td ng-class="gate.isSelected(1,1)" ng-click="gate.selectSection(1)">01 Combinatorics</td></tr>
+            <tbody>
+                <tr><td ng-class="gate.isSelected(1,1)" ng-click="gate.selectSection(1)">1 Combinatorics</td></tr>
             </tbody>
         </table>
     </div>
@@ -21,9 +21,9 @@
 
             <!-- Different body for different sections -->
 
-            <tbody class="fake-link" ng-if="gate.section === 1" >
-                <tr><td ng-class="gate.isSelected(2,1)" ng-click="gate.selectChapter(1)">01 Combination</td></tr>
-                <tr><td ng-class="gate.isSelected(2,2)" ng-click="gate.selectChapter(2)">02 Multinomial Theorem</td></tr>
+            <tbody ng-if="gate.section === 1" >
+                <tr><td ng-class="gate.isSelected(2,1)" ng-click="gate.selectChapter(1)">1 Combination</td></tr>
+                <tr><td ng-class="gate.isSelected(2,2)" ng-click="gate.selectChapter(2)">2 Multinomial Theorem</td></tr>
             </tbody>
 
         </table>

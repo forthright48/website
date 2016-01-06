@@ -47,5 +47,5 @@ td[ng-click]:hover {
     background-color: yellow;
 }
 .selected {
-    background-color: lightgray;
+    background-color: lime;
 }
