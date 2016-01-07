@@ -3,8 +3,8 @@ All notable changes are documented here.
 
 # TODO
 ### Features
-- Show highest index in gateway.
 - Don't show "Hint" if none is present.
+- Show highest index in gateway.
 - Server side and front side form validation.
 - Show login success or failure notification.
 - Show markdown preview in edit mode of gateway.

@@ -8,12 +8,17 @@
             </thead>
             <tbody>
                 <tr><td ng-class="gate.isSelected(1,1)" ng-click="gate.selectSection(1)">1 Combinatorics</td></tr>
+                <tr><td ng-class="gate.isSelected(1,-1)" ng-click="gate.selectSection(-1)">Uncategorized</td></tr>
             </tbody>
         </table>
     </div>
 
+    <div class="col-md-6" ng-if="gate.section === 0">
+        <h2 class="text-center selected">Choose a Section</h2>
+    </div>
+
     <!-- Display Chapters According to Section -->
-    <div class="col-md-6" ng-if="gate.section != 0">
+    <div class="col-md-6" ng-if="gate.section !== 0">
         <table class="table">
             <thead>
                 <th>Chapter</th>
@@ -24,6 +29,11 @@
             <tbody ng-if="gate.section === 1" >
                 <tr><td ng-class="gate.isSelected(2,1)" ng-click="gate.selectChapter(1)">1 Combination</td></tr>
                 <tr><td ng-class="gate.isSelected(2,2)" ng-click="gate.selectChapter(2)">2 Multinomial Theorem</td></tr>
+                <tr><td ng-class="gate.isSelected(2,3)" ng-click="gate.selectChapter(3)">3 Stars and Bars Theorem</td></tr>
+            </tbody>
+
+            <tbody ng-if="gate.section === -1" >
+                <tr><td ng-class="gate.isSelected(2,1)" ng-click="gate.selectChapter(1)">Show All</td></tr>
             </tbody>
 
         </table>

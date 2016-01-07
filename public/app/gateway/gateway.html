@@ -1,11 +1,9 @@
 <div>
-    <h2 class="text-danger text-center"> Work in Progress</h2>
-
-    <h1 class="page-header text-center">Gateway</h1>
+    <h2 class="text-center">Gateway</h2>
 
     <!-- Hide this if not logged in: Insert Problem Details-->
     <button class="btn btn-primary" ng-if="gate.isLoggedIn() && gate.edit.mode === 'display'" ng-click="gate.edit.mode = 'insertProblem'">Insert Content</button>
-    
+
     <div ng-if="gate.edit.mode === 'insertProblem'" ng-include="'/app/gateway/views/insertProblem.html'"></div>
 
     <!-- Edit Mode -->
