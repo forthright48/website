@@ -1,5 +1,4 @@
 <div class="row">
-
     <!-- Select a Section -->
     <div class="col-md-6">
         <table class="table">
@@ -7,8 +6,15 @@
                 <th>Section</th>
             </thead>
             <tbody>
-                <tr><td ng-class="gate.isSelected(1,1)" ng-click="gate.selectSection(1)">1 Combinatorics</td></tr>
-                <tr><td ng-class="gate.isSelected(1,-1)" ng-click="gate.selectSection(-1)">Uncategorized</td></tr>
+                <tr ng-repeat="section in gate.sectionList | orderBy:'ind'">
+                    <td ng-click="gate.selectSection(section._id)">{{$index+1}} {{section.name}}</td>
+                    <td ng-if="gate.isLoggedIn()">
+                        {{section._id}}
+                    </td>
+                    <td ng-if="gate.isLoggedIn()">
+                        <button class="btn btn-primary" ng-click="gate.editProblem(section)">Edit</button>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -24,16 +30,17 @@
                 <th>Chapter</th>
             </thead>
 
-            <!-- Different body for different sections -->
+            <tbody>
+                <tr ng-repeat="chapter in gate.chapterList | orderBy:'ind'">
+                    <td ng-click="gate.selectChapter(chapter._id)">{{$index + 1}} {{chapter.name}}</td>
 
-            <tbody ng-if="gate.section === 1" >
-                <tr><td ng-class="gate.isSelected(2,1)" ng-click="gate.selectChapter(1)">1 Combination</td></tr>
-                <tr><td ng-class="gate.isSelected(2,2)" ng-click="gate.selectChapter(2)">2 Multinomial Theorem</td></tr>
-                <tr><td ng-class="gate.isSelected(2,3)" ng-click="gate.selectChapter(3)">3 Stars and Bars Theorem</td></tr>
-            </tbody>
-
-            <tbody ng-if="gate.section === -1" >
-                <tr><td ng-class="gate.isSelected(2,1)" ng-click="gate.selectChapter(1)">Show All</td></tr>
+                    <td ng-if="gate.isLoggedIn()">
+                        {{chapter._id}}
+                    </td>
+                    <td ng-if="gate.isLoggedIn()">
+                        <button class="btn btn-primary" ng-click="gate.editProblem(chapter)">Edit</button>
+                    </td>
+                </tr>
             </tbody>
 
         </table>
@@ -49,11 +56,11 @@
     </thead>
     <tbody>
         <!-- Normal Data -->
-        <tr ng-repeat="prob in gate.problemList | orderBy:'task' ">
+        <tr ng-repeat="prob in gate.problemList2 | orderBy:'ind' ">
             <td>{{$index+1}}</td>
             <td>{{prob.type}}</td>
 
-            <td ng-if="prob.type === 'Text'">{{prob.textTitle}}</td>
+            <td ng-if="prob.type === 'Text'">{{prob.name}}</td>
 
             <td ng-if="prob.type === 'Problem'">{{prob.platform}} {{prob.pid}} - {{prob.name}}</td>
 

@@ -4,13 +4,13 @@ var mongoose = require ( "mongoose" ),
 var schema = new mongoose.Schema({
     section: "number",
     chapter: "number",
-    task: "number",
+    parent: "string",
+    ind: "number",
     type: "string",
-    textTitle: "string",
-    textBody: "string",
+    name: "string",
+    body: "string",
     platform: "string",
     pid: "string",
-    name: "string",
     link: "string",
     hint: "string"
 });
@@ -21,6 +21,7 @@ var router = express.Router();
 
 router.get ( "/gateway/:section/:chapter", getProblems );
 router.get ( "/gateway", getAllProblems );
+router.get ( "/gateway/:parent", getChildren);
 router.post ( "/auth/gateway", addProblem );
 router.delete ( "/auth/gateway/:p_id", deleteProblem );
 router.post ( "/auth/gateway/:p_id", editProblem );
@@ -44,6 +45,15 @@ function getAllProblems ( req, res ) {
         else res.json ( data );
     });
 }
+
+function getChildren ( req, res ) {
+    console.log(req.params.parent);
+    Gate.find({ parent : req.params.parent },function( err, data ){
+        if ( err ) res.status ( 500 ).send ( {error: "Something occured when dealing with Gateway database"});
+        else res.json ( data );
+    });
+}
+
 
 
 function addProblem ( req, res ) {
@@ -80,18 +90,16 @@ function editProblem ( req, res ) {
 
 // Syncs db data with req body
 function syncSchema ( data, req ) {
-    data.section = req.body.section;
-    data.chapter = req.body.chapter;
-    data.task = req.body.task;
+    data.section= req.body.section;
+    data.chapter= req.body.chapter;
+    data.parent = req.body.parent;
+    data.ind = req.body.ind;
     data.type = req.body.type;
-    data.textTitle = req.body.textTitle;
-    data.textBody = req.body.textBody;
+    data.name = req.body.name;
+    data.body = req.body.body;
     data.platform = req.body.platform;
     data.pid = req.body.pid;
-    data.name = req.body.name;
-    data.name = req.body.name;
     data.link = req.body.link;
     data.hint = req.body.hint;
-
     return data;
 }

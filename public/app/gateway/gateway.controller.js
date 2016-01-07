@@ -23,16 +23,23 @@
         vm.isLoggedIn = AuthService.isLoggedIn;
         vm.isSelected = isSelected;                     // (table,row)
 
+        activate();
         /**********************Implementation**************************/
+
+        function activate() {
+            GatewayList.getChildren("0").then ( function(res){
+                vm.sectionList = res.data;
+            }, function ( err ) {
+                console.log(err);
+            })
+        }
 
         function editProblem ( prob ) {
             vm.edit.prob = prob;
-            vm.edit.index = vm.problemList.indexOf(prob);
             vm.edit.mode = 'editProblem';
         }
 
         function saveProblem () {
-            vm.problemList[vm.edit.index] = vm.edit.prob;
             vm.edit.mode = 'display';
             vm.disable = true;
 
@@ -81,25 +88,27 @@
 
         function selectSection ( sec ) {
             vm.section = sec;
+            GatewayList.getChildren( sec ).then ( function ( res ) {
+                vm.chapterList = res.data;
+            }, function ( err) {
+                console.log(err);
+            })
             vm.chapter = 0;
         }
         function selectChapter ( ch ) {
             vm.chapter = ch;
-            getProblemList();
+            GatewayList.getChildren( ch ).then( function ( response ) {
+                vm.problemList2 = response.data;
+            }, function ( error) {
+                console.log( error );
+            })
         }
 
-        function getProblemList(){
+        function getAllProblemList(){
             vm.problemList = [];
 
             // To display all problems
-            
-            // GatewayList.getAllProblemsAsync().then( function ( response ) {
-            //     vm.problemList = response.data;
-            // }, function ( error) {
-            //     console.log( error );
-            // })
-
-            GatewayList.getProblemsAsync( vm.section, vm.chapter ).then( function ( response ) {
+            GatewayList.getAllProblemsAsync().then( function ( response ) {
                 vm.problemList = response.data;
             }, function ( error) {
                 console.log( error );

@@ -7,12 +7,16 @@
             insertProblemAsync: insertProblemAsync,             //(form)
             editProblemAsync: editProblemAsync,
             deleteProblemAsync : deleteProblemAsync,
-            getAllProblemsAsync: getAllProblemsAsync
+            getAllProblemsAsync: getAllProblemsAsync,
+            getChildren: getChildren
         }
 
         return service;
 
         /***********Implementation***********************/
+        function getChildren ( parent ) {
+            return $http.get ( "/api/gateway/" + parent );
+        }
         function getAllProblemsAsync () {
             return $http.get ( "/api/gateway" );
         }
